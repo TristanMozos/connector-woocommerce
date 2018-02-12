@@ -4,6 +4,7 @@
 import socket
 import logging
 import xmlrpc.client
+import urllib
 from odoo.addons.component.core import AbstractComponent
 from odoo.addons.queue_job.exception import FailedJobError
 from odoo.addons.connector.exception import (NetworkRetryableError,
@@ -96,16 +97,21 @@ class WooAPI(object):
             self._api = api
         return self._api
 
-    def call(self, method, arguments):
+    def call(self, endpoint, method='get', data=None):
         try:
-            if isinstance(arguments, list):
-                while arguments and arguments[-1] is None:
-                    arguments.pop()
             start = datetime.now()
             try:
-                response = self.api.get(method)
-                response_json = response.json()
+                assert method in ['get', 'post', 'put', 'delete', 'options']
+                endpoint_args = [endpoint]
+                if method in ['post', 'put']:
+                    if not data:
+                        raise FailedJobError(
+                            "Failed %s: %s. Data is required" % (
+                                method, endpoint))
+                    endpoint_args.append(data)
+                response = getattr(self.api, method)(*endpoint_args)
                 if not response.ok:
+                    response_json = response.json()
                     if response_json.get('code') and \
                             response_json.get('message'):
                         raise FailedJobError(
@@ -114,15 +120,15 @@ class WooAPI(object):
                                                    response_json['message']))
                     else:
                         return response.raise_for_status()
-                result = response_json
             except:
-                _logger.error("api.call(%s, %s) failed", method, arguments)
+                _logger.error("api.call(%s) failed with method %s" % (
+                    endpoint, method))
                 raise
             else:
-                _logger.debug("api.call(%s, %s) returned %s in %s seconds",
-                              method, arguments, result,
+                _logger.debug("api.call(%s, %s) returned in %s seconds",
+                              method, endpoint,
                               (datetime.now() - start).seconds)
-            return result
+            return response
         except (socket.gaierror, socket.error, socket.timeout) as err:
             raise NetworkRetryableError(
                 'A network error caused the failure of the job: '
@@ -175,7 +181,7 @@ class WooCRUDAdapter(AbstractComponent):
         """ Delete a record on the external system """
         raise NotImplementedError
 
-    def _call(self, method, arguments):
+    def _call(self, endpoint, method='get', params=None, data=None):
         try:
             wc_api = getattr(self.work, 'wc_api')
         except AttributeError:
@@ -184,7 +190,27 @@ class WooCRUDAdapter(AbstractComponent):
                 'WooAPI instance to be able to use the '
                 'Backend Adapter.'
             )
-        return wc_api.call(method, arguments)
+        endpoint_url = endpoint
+        if params:
+            url_arguments = urllib.parse.urlencode(params)
+            endpoint_url = "%s?%s" % (endpoint, url_arguments)
+        response = wc_api.call(endpoint_url, method=method, data=data)
+        response_json = response.json()
+        total_pages = int(response.headers.get('X-WP-TotalPages', 1))
+        page = 1
+        while page < total_pages:
+            page += 1
+            params['page'] = page
+            _logger.info("Recovering results for %s in page %s" % (
+                endpoint, page))
+            url_arguments = urllib.parse.urlencode(params)
+            endpoint_url = "%s?%s" % (endpoint, url_arguments)
+            response = wc_api.call(endpoint_url, method=method, data=data)
+            if isinstance(response_json, list):
+                response_json += response.json()
+            elif isinstance(response_json, dict):
+                response_json.update(response.json())
+        return response_json
 
 
 class GenericAdapter(AbstractComponent):
@@ -200,38 +226,39 @@ class GenericAdapter(AbstractComponent):
 
         :rtype: list
         """
-        return self._call('%s.search' % self._woo_model,
-                          [filters] if filters else [{}])
+        params = {
+            'per_page': 50
+        }
+        if filters:
+            params.update(filters)
+        response = self._call(self._woo_model, params=params)
+        return [r['id'] for r in response]
 
-    def read(self, id, attributes=None):
+    def read(self, id, params=None):
         """ Returns the information of a record
 
         :rtype: dict
         """
-        arguments = []
-        if attributes:
-            # Avoid to pass Null values in attributes. Workaround for
-            # is not installed, calling info() with None in attributes
-            # would return a wrong result (almost empty list of
-            # attributes). The right correction is to install the
-            # compatibility patch on WooCommerce.
-            arguments.append(attributes)
-        return self._call('%s/' % self._woo_model + str(id), [])
+        return self._call('%s/%s' % (self._woo_model, id), params=params)
 
     def search_read(self, filters=None):
         """ Search records according to some criterias
         and returns their information"""
-        return self._call('%s.list' % self._woo_model, [filters])
+        params = {}
+        if filters:
+            params.update(filters)
+        response = self._call(self._woo_model, params=params)
+        return response
 
     def create(self, data):
         """ Create a record on the external system """
-        return self._call('%s.create' % self._woo_model, [data])
+        return self._call('%s' % self._woo_model, method='post', data=[data])
 
     def write(self, id, data):
         """ Update records on the external system """
-        return self._call('%s.update' % self._woo_model,
-                          [int(id), data])
+        return self._call('%s/%s' % (self._woo_model, id),
+                          method='put', data=data)
 
     def delete(self, id):
         """ Delete a record on the external system """
-        return self._call('%s.delete' % self._woo_model, [int(id)])
+        return self._call('%s/%s' % (self._woo_model, id), method='delete')

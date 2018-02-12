@@ -28,13 +28,7 @@ class SaleOrderBatchImporter(Component):
 
     def run(self, filters=None):
         """ Run the synchronization """
-        from_date = filters.pop('from_date', None)
-        to_date = filters.pop('to_date', None)
-        record_ids = self.backend_adapter.search(
-            filters,
-            from_date=from_date,
-            to_date=to_date,
-        )
+        record_ids = self.backend_adapter.search(filters)
         order_ids = []
         for record_id in record_ids:
             woo_sale_order = self.env['woo.sale.order'].search(

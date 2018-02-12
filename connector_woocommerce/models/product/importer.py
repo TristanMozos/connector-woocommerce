@@ -26,13 +26,7 @@ class ProductBatchImporter(Component):
 
     def run(self, filters=None):
         """ Run the synchronization """
-        from_date = filters.pop('from_date', None)
-        to_date = filters.pop('to_date', None)
-        record_ids = self.backend_adapter.search(
-            filters,
-            from_date=from_date,
-            to_date=to_date,
-        )
+        record_ids = self.backend_adapter.search(filters)
         _logger.debug('search for woo Products %s returned %s',
                       filters, record_ids)
         for record_id in record_ids:

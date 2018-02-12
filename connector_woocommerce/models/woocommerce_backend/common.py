@@ -169,37 +169,3 @@ class WooBackend(models.Model):
         for backend in self:
             self.env['woo.sale.order'].with_delay().import_batch(backend)
         return True
-
-    # @api.multi
-    # def import_order(self):
-    #     session = ConnectorSession(self.env.cr, self.env.uid,
-    #                                context=self.env.context)
-    #     import_start_time = datetime.now()
-    #     backend_id = self.id
-    #     from_date = None
-    #     sale_order_import_batch.delay(
-    #         session, 'woo.sale.order', backend_id,
-    #         {'from_date': from_date,
-    #          'to_date': import_start_time}, priority=4)
-    #     return True
-
-    # @api.multi
-    # def import_categories(self):
-    #     """ Import Product categories """
-    #     for backend in self:
-    #         backend.import_category()
-    #     return True
-
-    # @api.multi
-    # def import_products(self):
-    #     """ Import categories from all websites """
-    #     for backend in self:
-    #         backend.import_product()
-    #     return True
-
-    # @api.multi
-    # def import_orders(self):
-    #     """ Import Orders from all websites """
-    #     for backend in self:
-    #         backend.import_order()
-    #     return True

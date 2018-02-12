@@ -25,12 +25,8 @@ class CategoryBatchImporter(Component):
 
     def run(self, filters=None):
         """ Run the synchronization """
-        from_date = filters.pop('from_date', None)
-        to_date = filters.pop('to_date', None)
         record_ids = self.backend_adapter.search(
-            filters,
-            from_date=from_date,
-            to_date=to_date,
+            filters
         )
         _logger.debug('search for woo Product Category %s returned %s',
                       filters, record_ids)

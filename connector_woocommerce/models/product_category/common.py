@@ -43,23 +43,3 @@ class CategoryAdapter(Component):
     _apply_on = 'woo.product.category'
 
     _woo_model = 'products/categories'
-
-    def search(self, filters=None, from_date=None, to_date=None):
-        """ Search records according to some criteria and return a
-        list of ids
-
-        :rtype: list
-        """
-        if filters is None:
-            filters = {}
-        WOO_DATETIME_FORMAT = '%Y/%m/%d %H:%M:%S'
-        dt_fmt = WOO_DATETIME_FORMAT
-        if from_date is not None:
-            filters.setdefault('updated_at', {})
-            filters['updated_at']['from'] = from_date.strftime(dt_fmt)
-        if to_date is not None:
-            filters.setdefault('updated_at', {})
-            filters['updated_at']['to'] = to_date.strftime(dt_fmt)
-        categories = self._call('products/categories',
-                                [filters] if filters else [{}])
-        return [category['id'] for category in categories]
