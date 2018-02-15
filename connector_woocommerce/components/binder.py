@@ -19,6 +19,7 @@ class WooModelBinder(Component):
     _name = 'woocommerce.binder'
     _inherit = ['base.binder', 'base.woocommerce.connector']
     _apply_on = [
+        'woo.account.tax',
         'woo.res.partner',
         'woo.product.category',
         'woo.product.product',

@@ -4,6 +4,10 @@
 "access_wc_backend_sale_manager","wc_backend manager","model_wc_backend","sales_team.group_sale_manager",1,0,0,0
 "access_woo_res_partner","woo_res_partner connector manager","model_woo_res_partner","connector.group_connector_manager",1,1,1,1
 "access_res_partner_group_user","woo_res_partner group_user","model_woo_res_partner","base.group_user",1,0,0,0
+"access_woo_address","woo_address connector manager","model_woo_address","connector.group_connector_manager",1,1,1,1
+"access_address_group_user","woo_address group_user","model_woo_address","base.group_user",1,0,0,0
+"access_woo_account_tax","woo_account_tax connector manager","model_woo_account_tax","connector.group_connector_manager",1,1,1,1
+"access_woo_account_tax_group_user","woo_account_tax group_user","model_woo_account_tax","base.group_user",1,0,0,0
 "access_woo_product_category","woo_product_category connector manager","model_woo_product_category","connector.group_connector_manager",1,1,1,1
 "access_product_category_sale_manager","woo_product.category salemanager","model_woo_product_category","sales_team.group_sale_manager",1,1,1,1
 "access_product_category_user","woo_product.category.user","model_woo_product_category","base.group_user",1,0,0,0

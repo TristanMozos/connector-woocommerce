@@ -18,7 +18,8 @@
     'data': [
         "security/ir.model.access.csv",
         "views/backend_view.xml",
-        "views/account_payment_mode_view.xml"
+        "views/account_payment_mode_view.xml",
+        "views/account_tax_view.xml"
     ],
     'external_dependencies': {
         'python': ['woocommerce'],

@@ -37,9 +37,7 @@ class SaleOrderBatchImporter(Component):
         for record_id in record_ids:
             woo_sale_order = self.env['woo.sale.order'].search(
                 [('external_id', '=', record_id)])
-            if woo_sale_order:
-                self.update_existing_order(woo_sale_order[0], record_id)
-            else:
+            if not woo_sale_order:
                 order_ids.append(record_id)
         _logger.info('search for woo partners %s returned %s',
                      filters, record_ids)
@@ -81,6 +79,8 @@ class SaleImportRule(Component):
         # the order has been canceled since the job has been created
         order_id = record['id']
         max_days = method.days_before_cancel
+        if record['status'] == 'cancelled':
+            raise NothingToDoJob('Order %s canceled' % order_id)
         if max_days:
             fmt = '%Y-%m-%dT%H:%M:%S'
             order_date = datetime.strptime(record['date_created'], fmt)
@@ -219,6 +219,12 @@ class SaleOrderImporter(Component):
         assert self.partner_shipping_id, (
             "self.partner_id should have been defined "
             "in SaleOrderImporter._import_addresses")
+
+    def _create(self, data):
+        binding = super(SaleOrderImporter, self)._create(data)
+        if binding.fiscal_position_id:
+            binding.odoo_id._compute_tax_id()
+        return binding
 
     def _create_data(self, map_record, **kwargs):
         self._check_special_fields()
@@ -397,15 +403,11 @@ class SaleOrderImportMapper(Component):
     def _add_shipping_line(self, map_record, values):
         record = map_record.source
         for shipping_line in record.get('shipping_lines', []):
-            amount_incl = float(shipping_line.get('total') or 0.0)
-            amount_excl = amount_incl - float(record.get('total_tax') or 0.0)
+            amount_shipping = float(shipping_line.get('total') or 0.0)
             line_builder = self.component(usage='order.line.builder.shipping')
             # add even if the price is 0, otherwise odoo will add a shipping
             # line in the order when we ship the picking
-            if record.get('prices_include_tax', False):
-                line_builder.price_unit = amount_incl
-            else:
-                line_builder.price_unit = amount_excl
+            line_builder.price_unit = amount_shipping
 
             if values.get('carrier_id'):
                 carrier = self.env['delivery.carrier'].browse(
@@ -419,7 +421,6 @@ class SaleOrderImportMapper(Component):
     def finalize(self, map_record, values):
         values.setdefault('order_line', [])
         values = self._add_shipping_line(map_record, values)
-        # TODO: Discounts
         values.update({
             'partner_id': self.options.partner_id,
             'partner_invoice_id': self.options.partner_invoice_id,
@@ -450,3 +451,17 @@ class SaleOrderLineImportMapper(Component):
             "product_id %s should have been imported in "
             "SaleOrderImporter._import_dependencies" % record['product_id'])
         return {'product_id': product.id}
+
+    @mapping
+    def tax_ids(self, record):
+        taxes = record['taxes']
+        result = []
+        for tax in taxes:
+            binder = self.binder_for('woo.account.tax')
+            odoo_tax = binder.to_internal(tax['id'], unwrap=True)
+            if not odoo_tax:
+                raise FailedJobError(
+                    'WooCommerce tax with ID %s is not related to any tax '
+                    'in Odoo. Please link taxes and try again' % tax['id'])
+            result.append(odoo_tax.id)
+        return {'tax_id': [(6, 0, result)]}
