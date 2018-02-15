@@ -24,9 +24,35 @@ class WooResPartner(models.Model):
     backend_id = fields.Many2one(
         comodel_name='wc.backend',
         string='Woo Backend',
-        store=True,
-        readonly=False,
+        required=False
     )
+
+
+class WooAddress(models.Model):
+    _name = 'woo.address'
+    _inherit = 'woo.binding'
+    _inherits = {'res.partner': 'odoo_id'}
+
+    _rec_name = 'backend_id'
+
+    woo_partner_id = fields.Many2one(comodel_name='woo.res.partner',
+                                     string='Woo Partner',
+                                     required=True,
+                                     ondelete='cascade')
+    odoo_id = fields.Many2one(comodel_name='res.partner',
+                              string='Partner',
+                              required=True,
+                              ondelete='cascade')
+    backend_id = fields.Many2one(
+        comodel_name='wc.backend',
+        string='Woo Backend',
+        required=False
+    )
+
+    _sql_constraints = [
+        ('odoo_uniq', 'unique(backend_id, odoo_id)',
+         'A partner address can only have one binding by backend.'),
+    ]
 
 
 class CustomerAdapter(Component):

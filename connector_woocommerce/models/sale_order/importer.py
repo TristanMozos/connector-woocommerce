@@ -138,8 +138,105 @@ class SaleOrderImporter(Component):
 
     def _import_addresses(self):
         record = self.woo_record
-        self._import_dependency(record['customer_id'],
-                                'woo.res.partner')
+
+        partner_email = record.get('billing', {}).get('email')
+        if not record.get('customer_id') and partner_email:
+            partner = self.env['woo.res.partner'].search([
+                ('email', '=', partner_email),
+                ('backend_id', '=', self.backend_record.id)
+            ])
+            if partner:
+                woocommerce_id = partner.external_id
+                if not str(woocommerce_id).startswith('guestorder:'):
+                    record['customer_id'] = woocommerce_id
+
+        is_guest_order = True
+        if record.get('customer_id'):
+            is_guest_order = False
+            self._import_dependency(record['customer_id'],
+                                    'woo.res.partner')
+
+        partner_binder = self.binder_for('woo.res.partner')
+        if is_guest_order:
+            guest_customer_id = 'guestorder:%s' % record['number']
+
+            record['customer_id'] = guest_customer_id
+            address = record['billing']
+            customer_record = {
+                'id': guest_customer_id,
+                'first_name': address['first_name'],
+                'last_name': address['last_name'],
+                'email': address['email'],
+                'billing_address': address
+            }
+            mapper = self.component(usage='import.mapper',
+                                    model_name='woo.res.partner')
+            map_record = mapper.map_record(customer_record)
+            partner_binding = self.env['woo.res.partner'].create(
+                map_record.values(for_create=True))
+            partner_binder.bind(guest_customer_id, partner_binding)
+        else:
+            importer = self.component(usage='record.importer',
+                                      model_name='woo.res.partner')
+            importer.run(record['customer_id'])
+            partner_binding = partner_binder.to_internal(record['customer_id'])
+
+        partner = partner_binding.odoo_id
+
+        addresses_defaults = {'parent_id': partner.id,
+                              'woo_partner_id': partner_binding.id,
+                              'email': partner_email,
+                              'active': False}
+
+        addr_mapper = self.component(usage='import.mapper',
+                                     model_name='woo.address')
+
+        def create_address(address_record):
+            map_record = addr_mapper.map_record(address_record)
+            map_record.update(addresses_defaults)
+            address_bind = self.env['woo.address'].create(
+                map_record.values(for_create=True,
+                                  parent_partner=partner))
+            return address_bind.odoo_id.id
+
+        billing_id = create_address(record['billing'])
+
+        shipping_id = None
+        if record['shipping']:
+            shipping_id = create_address(record['shipping'])
+
+        self.partner_id = partner.id
+        self.partner_invoice_id = billing_id
+        self.partner_shipping_id = shipping_id or billing_id
+
+    def _check_special_fields(self):
+        assert self.partner_id, (
+            "self.partner_id should have been defined "
+            "in SaleOrderImporter._import_addresses")
+        assert self.partner_invoice_id, (
+            "self.partner_id should have been "
+            "defined in SaleOrderImporter._import_addresses")
+        assert self.partner_shipping_id, (
+            "self.partner_id should have been defined "
+            "in SaleOrderImporter._import_addresses")
+
+    def _create_data(self, map_record, **kwargs):
+        self._check_special_fields()
+        return super(SaleOrderImporter, self)._create_data(
+            map_record,
+            partner_id=self.partner_id,
+            partner_invoice_id=self.partner_invoice_id,
+            partner_shipping_id=self.partner_shipping_id,
+            **kwargs)
+
+    def _update_data(self, map_record, **kwargs):
+        self._check_special_fields()
+        return super(SaleOrderImporter, self)._update_data(
+            map_record,
+            partner_id=self.partner_id,
+            partner_invoice_id=self.partner_invoice_id,
+            partner_shipping_id=self.partner_shipping_id,
+            **kwargs)
 
     def _import_dependencies(self):
         """ Import the dependencies for the record"""
@@ -323,6 +420,11 @@ class SaleOrderImportMapper(Component):
         values.setdefault('order_line', [])
         values = self._add_shipping_line(map_record, values)
         # TODO: Discounts
+        values.update({
+            'partner_id': self.options.partner_id,
+            'partner_invoice_id': self.options.partner_invoice_id,
+            'partner_shipping_id': self.options.partner_shipping_id,
+        })
         onchange = self.component(
             usage='ecommerce.onchange.manager.sale.order'
         )
