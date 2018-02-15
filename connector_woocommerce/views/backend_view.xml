@@ -36,6 +36,7 @@
             </group>
             <group name="main_configuration" string="Main Configuration">
                 <field name="warehouse_id"/>
+                <field name="product_stock_field_id"/>
             </group>
             <notebook>
                 <page name="import" string="Imports">

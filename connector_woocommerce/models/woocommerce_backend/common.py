@@ -34,6 +34,14 @@ class WooBackend(models.Model):
         """
         return [('v2', 'V2')]
 
+    @api.model
+    def _get_stock_field_id(self):
+        field = self.env['ir.model.fields'].search(
+            [('model', '=', 'product.product'),
+             ('name', '=', 'virtual_available')],
+            limit=1)
+        return field
+
     name = fields.Char("Name", required=True)
     location = fields.Char("Url", required=True)
     consumer_key = fields.Char("Consumer key")
@@ -46,6 +54,16 @@ class WooBackend(models.Model):
         required=True,
         help='Warehouse used to compute the '
              'stock quantities.',
+    )
+    product_stock_field_id = fields.Many2one(
+        comodel_name='ir.model.fields',
+        string='Stock Field',
+        default=_get_stock_field_id,
+        domain="[('model', 'in', ['product.product', 'product.template']),"
+               " ('ttype', '=', 'float')]",
+        help="Choose the field of the product which will be used for "
+             "stock inventory updates.\nIf empty, Quantity Available "
+             "is used.",
     )
     company_id = fields.Many2one(
         comodel_name='res.company',
