@@ -3,8 +3,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 
+from datetime import datetime, timedelta
+from odoo import _
 from odoo.addons.component.core import Component
 from odoo.addons.connector.components.mapper import mapping
+from openerp.addons.connector.exception import RetryableJobError
+from odoo.addons.queue_job.exception import NothingToDoJob, FailedJobError
 
 _logger = logging.getLogger(__name__)
 
@@ -43,10 +47,94 @@ class SaleOrderBatchImporter(Component):
             self._import_record(record_id)
 
 
+class SaleImportRule(Component):
+    _name = 'woocommerce.sale.import.rule'
+    _inherit = 'base.woocommerce.connector'
+    _apply_on = 'woo.sale.order'
+    _usage = 'sale.import.rule'
+
+    def _rule_always(self, record, method):
+        """ Always import the order """
+        return True
+
+    def _rule_never(self, record, method):
+        """ Never import the order """
+        raise NothingToDoJob('Orders with payment method %s '
+                             'are never imported.' %
+                             record['payment_method'])
+
+    def _rule_paid(self, record, method):
+        """ Import the order only if it has received a payment """
+        if not record.get('date_paid'):
+            raise RetryableJobError('The order has not been paid.\n'
+                                    'The import will be retried later.')
+
+    _rules = {
+        'always': _rule_always,
+        'paid': _rule_paid,
+        'never': _rule_never,
+        'authorized': _rule_paid,
+    }
+
+    def _rule_global(self, record, method):
+        """ Rule always executed, whichever is the selected rule """
+        # the order has been canceled since the job has been created
+        order_id = record['id']
+        max_days = method.days_before_cancel
+        if max_days:
+            fmt = '%Y-%m-%dT%H:%M:%S'
+            order_date = datetime.strptime(record['date_created'], fmt)
+            if order_date + timedelta(days=max_days) < datetime.now():
+                raise NothingToDoJob('Import of the order %s canceled '
+                                     'because it has not been paid since %d '
+                                     'days' % (order_id, max_days))
+
+    def check(self, record):
+        """ Check whether the current sale order should be imported
+        or not. It will actually use the payment method configuration
+        and see if the choosed rule is fullfilled.
+
+        :returns: True if the sale order should be imported
+        :rtype: boolean
+        """
+        payment_method = record['payment_method']
+        method = self.env['account.payment.mode'].search(
+            [('woo_payment_method_code', '=', payment_method)],
+            limit=1,
+        )
+        if not method:
+            raise FailedJobError(
+                "The configuration is missing for the Payment Mode '%s'.\n\n"
+                "Resolution:\n"
+                "- Go to "
+                "'Accounting > Configuration > Management > Payment Modes'\n"
+                "- Create a new Payment Mode with WooCommerce Code '%s'\n"
+                "- Eventually link the Payment Mode to an existing Workflow "
+                "Process or create a new one." % (payment_method,
+                                                  payment_method))
+        self._rule_global(record, method)
+        self._rules[method.import_rule](self, record, method)
+
+
 class SaleOrderImporter(Component):
     _name = 'woocommerce.sale.order.importer'
     _inherit = 'woocommerce.importer'
     _apply_on = ['woo.sale.order']
+
+    def _must_skip(self):
+        """ Hook called right after we read the data from the backend.
+
+        If the method returns a message giving a reason for the
+        skipping, the import will be interrupted and the message
+        recorded in the job (if the import is called directly by the
+        job, not by dependencies).
+
+        If it returns None, the import will continue normally.
+
+        :returns: None | str | unicode
+        """
+        if self.binder.to_internal(self.external_id):
+            return _('Already imported')
 
     def _import_addresses(self):
         record = self.woo_record
@@ -97,6 +185,10 @@ class SaleOrderImporter(Component):
         # product in a sale)
         record = self._clean_woo_items(record)
         return record
+
+    def _before_import(self):
+        rules = self.component(usage='sale.import.rule')
+        rules.check(self.woo_record)
 
 
 class SaleOrderImportMapper(Component):
@@ -166,8 +258,75 @@ class SaleOrderImportMapper(Component):
         return result
 
     @mapping
+    def carrier_id(self, record):
+        shipping_lines = record.get('shipping_lines', [])
+        result = {}
+        if shipping_lines:
+            woocommerce_code = shipping_lines[0].get('method_id')
+            if woocommerce_code:
+                carrier = self.env['delivery.carrier'].search(
+                    [('woocommerce_code', '=', woocommerce_code)],
+                    limit=1,
+                )
+                if carrier:
+                    result = {'carrier_id': carrier.id}
+                else:
+                    # FIXME: a mapper should not have any side effects
+                    product = self.env.ref(
+                        'connector_ecommerce.product_product_shipping')
+                    carrier = self.env['delivery.carrier'].create({
+                        'product_id': product.id,
+                        'name': woocommerce_code,
+                        'woocommerce_code': woocommerce_code})
+                    result = {'carrier_id': carrier.id}
+        return result
+
+    @mapping
     def backend_id(self, record):
         return {'backend_id': self.backend_record.id}
+
+    @mapping
+    def payment(self, record):
+        payment_method = record['payment_method']
+        method = self.env['account.payment.mode'].search(
+            [('woo_payment_method_code', '=', payment_method)],
+            limit=1,
+        )
+        assert method, ("method %s should exist because the import fails "
+                        "in SaleOrderImporter._before_import when it is "
+                        " missing" % payment_method)
+        return {'payment_mode_id': method.id}
+
+    def _add_shipping_line(self, map_record, values):
+        record = map_record.source
+        for shipping_line in record.get('shipping_lines', []):
+            amount_incl = float(shipping_line.get('total') or 0.0)
+            amount_excl = amount_incl - float(record.get('total_tax') or 0.0)
+            line_builder = self.component(usage='order.line.builder.shipping')
+            # add even if the price is 0, otherwise odoo will add a shipping
+            # line in the order when we ship the picking
+            if record.get('prices_include_tax', False):
+                line_builder.price_unit = amount_incl
+            else:
+                line_builder.price_unit = amount_excl
+
+            if values.get('carrier_id'):
+                carrier = self.env['delivery.carrier'].browse(
+                    values['carrier_id'])
+                line_builder.product = carrier.product_id
+
+            line = (0, 0, line_builder.get_line())
+            values['order_line'].append(line)
+        return values
+
+    def finalize(self, map_record, values):
+        values.setdefault('order_line', [])
+        values = self._add_shipping_line(map_record, values)
+        # TODO: Discounts
+        onchange = self.component(
+            usage='ecommerce.onchange.manager.sale.order'
+        )
+        return onchange.play(values, values['woo_order_line_ids'])
 
 
 class SaleOrderLineImportMapper(Component):
