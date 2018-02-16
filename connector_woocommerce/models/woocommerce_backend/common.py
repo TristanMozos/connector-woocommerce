@@ -1,13 +1,17 @@
 # © 2009 Tech-Receptives Solutions Pvt. Ltd.
 # © 2018 FactorLibre
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import pytz
 import logging
 
 from contextlib import contextmanager
+from datetime import datetime, timedelta
 
 from odoo import models, fields, api, _
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from odoo.exceptions import UserError
-from ...components.backend_adapter import WooLocation, WooAPI
+from ...components.backend_adapter import (WooLocation,
+                                           WooAPI)
 
 _logger = logging.getLogger(__name__)
 
@@ -79,6 +83,9 @@ class WooBackend(models.Model):
              "Note that a similar configuration exists "
              "for each storeview.",
     )
+    import_orders_from_date = fields.Datetime(
+        string='Import orders from date',
+    )
 
     @contextmanager
     @api.multi
@@ -101,6 +108,16 @@ class WooBackend(models.Model):
         _super = super(WooBackend, self)
         with _super.work_on(model_name, wc_api=wc_api, **kwargs) as work:
             yield work
+
+    @api.model
+    def _date_as_user_tz(self, dtstr):
+        if not dtstr:
+            return None
+        timezone = pytz.timezone(self.env.user.partner_id.tz or 'utc')
+        dt = datetime.strptime(dtstr, DEFAULT_SERVER_DATETIME_FORMAT)
+        dt = pytz.utc.localize(dt)
+        dt = dt.astimezone(timezone)
+        return dt.strftime('%Y-%m-%dT%H:%M:%S')
 
     @api.multi
     def get_product_ids(self, data):
@@ -184,6 +201,15 @@ class WooBackend(models.Model):
 
     @api.multi
     def import_orders(self):
+        import_start_time = datetime.now()
         for backend in self:
-            self.env['woo.sale.order'].with_delay().import_batch(backend)
+            params = {}
+            if backend.import_orders_from_date:
+                params['after'] = self._date_as_user_tz(
+                    backend.import_orders_from_date)
+            self.env['woo.sale.order'].with_delay().import_batch(
+                backend, params=params)
+        next_time = import_start_time - timedelta(seconds=30)
+        next_time = fields.Datetime.to_string(next_time)
+        self.write({'import_orders_from_date': next_time})
         return True

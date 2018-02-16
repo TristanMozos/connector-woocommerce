@@ -19,7 +19,7 @@ except ImportError:
 
 recorder = {}
 
-WOO_DATETIME_FORMAT = '%Y/%m/%dT%H:%M:%S'
+WOO_DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S'
 
 
 def call_to_key(method, arguments):

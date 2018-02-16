@@ -56,7 +56,12 @@
                         string="Import in background" />
                     </group>
                     <group>
-                        <label string="Import Sale Orders" class="oe_inline" />
+                        <div>
+                            <label string="Import Sale Orders since" class="oe_inline" />
+                            <field name="import_orders_from_date"
+                                class="oe_inline"
+                                nolabel="1"/>
+                        </div>
                         <button name="import_orders" type="object" class="oe_highlight"
                             string="Import in background" />
                     </group>
