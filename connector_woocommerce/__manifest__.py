@@ -11,6 +11,7 @@
     'depends': [
         'connector',
         'connector_ecommerce',
+        'product_multi_category',
         'sale_stock'
     ],
     'installable': True,
