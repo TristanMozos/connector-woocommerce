@@ -99,11 +99,6 @@ class WooBackend(models.Model):
             self.consumer_key,
             self.consumer_secret
         )
-        # TODO: Check Auth Basic
-        # if self.use_auth_basic:
-        #     magento_location.use_auth_basic = True
-        #     magento_location.auth_basic_username = self.auth_basic_username
-        #     magento_location.auth_basic_password = self.auth_basic_password
         wc_api = WooAPI(woocommerce_location)
         _super = super(WooBackend, self)
         with _super.work_on(model_name, wc_api=wc_api, **kwargs) as work:
@@ -213,3 +208,35 @@ class WooBackend(models.Model):
         next_time = fields.Datetime.to_string(next_time)
         self.write({'import_orders_from_date': next_time})
         return True
+
+    @api.multi
+    def _domain_for_update_product_stock_qty(self):
+        return [
+            ('backend_id', 'in', self.ids),
+            ('type', '!=', 'service'),
+            ('no_stock_sync', '=', False),
+        ]
+
+    @api.multi
+    def update_product_stock_qty(self):
+        woo_product_env = self.env['woo.product.product']
+        domain = self._domain_for_update_product_stock_qty()
+        woo_products = woo_product_env.search(domain)
+        woo_products.recompute_wocommerce_qty()
+        return True
+
+    @api.model
+    def _woocommerce_backend(self, callback, domain=None):
+        if domain is None:
+            domain = []
+        backends = self.search(domain)
+        if backends:
+            getattr(backends, callback)()
+
+    @api.model
+    def _scheduler_import_sale_orders(self, domain=None):
+        self._woocommerce_backend('import_orders', domain=domain)
+
+    @api.model
+    def _scheduler_update_product_stock_qty(self, domain=None):
+        self._woocommerce_backend('update_product_stock_qty', domain=domain)

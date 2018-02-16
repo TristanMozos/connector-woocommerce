@@ -17,6 +17,7 @@
     'installable': True,
     'auto_install': False,
     'data': [
+        "data/connector_woocommerce_data.xml",
         "security/ir.model.access.csv",
         "views/backend_view.xml",
         "views/account_payment_mode_view.xml",
