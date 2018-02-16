@@ -18,21 +18,6 @@ class CategoryBatchImporter(Component):
     _inherit = 'woocommerce.delayed.batch.importer'
     _apply_on = ['woo.product.category']
 
-    def _import_record(self, external_id, job_options=None):
-        """ Delay a job for the import """
-        super(CategoryBatchImporter, self)._import_record(
-            external_id, job_options=job_options)
-
-    def run(self, filters=None):
-        """ Run the synchronization """
-        record_ids = self.backend_adapter.search(
-            filters
-        )
-        _logger.debug('search for woo Product Category %s returned %s',
-                      filters, record_ids)
-        for record_id in record_ids:
-            self._import_record(record_id)
-
 
 class ProductCategoryImporter(Component):
     _name = 'woocommerce.product.category.importer'

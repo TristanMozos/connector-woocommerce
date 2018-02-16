@@ -155,16 +155,16 @@ class WooCRUDAdapter(AbstractComponent):
     _inherit = ['base.backend.adapter', 'base.woocommerce.connector']
     _usage = 'backend.adapter'
 
-    def search(self, filters=None):
+    def search(self, params=None):
         """ Search records according to some criterias
         and returns a list of ids """
         raise NotImplementedError
 
-    def read(self, id, attributes=None):
+    def read(self, id, params=None):
         """ Returns the information of a record """
         raise NotImplementedError
 
-    def search_read(self, filters=None):
+    def search_read(self, params=None):
         """ Search records according to some criterias
         and returns their information"""
         raise NotImplementedError
@@ -196,20 +196,6 @@ class WooCRUDAdapter(AbstractComponent):
             endpoint_url = "%s?%s" % (endpoint, url_arguments)
         response = wc_api.call(endpoint_url, method=method, data=data)
         response_json = response.json()
-        total_pages = int(response.headers.get('X-WP-TotalPages', 1))
-        page = 1
-        while page < total_pages:
-            page += 1
-            params['page'] = page
-            _logger.info("Recovering results for %s in page %s" % (
-                endpoint, page))
-            url_arguments = urllib.parse.urlencode(params)
-            endpoint_url = "%s?%s" % (endpoint, url_arguments)
-            response = wc_api.call(endpoint_url, method=method, data=data)
-            if isinstance(response_json, list):
-                response_json += response.json()
-            elif isinstance(response_json, dict):
-                response_json.update(response.json())
         return response_json
 
 
@@ -220,17 +206,14 @@ class GenericAdapter(AbstractComponent):
 
     _woo_model = None
 
-    def search(self, filters=None):
+    def search(self, params=None):
         """ Search records according to some criterias
         and returns a list of ids
 
         :rtype: list
         """
-        params = {
-            'per_page': 50
-        }
-        if filters:
-            params.update(filters)
+        if not params:
+            params = {}
         response = self._call(self._woo_model, params=params)
         return [r['id'] for r in response]
 
@@ -241,12 +224,11 @@ class GenericAdapter(AbstractComponent):
         """
         return self._call('%s/%s' % (self._woo_model, id), params=params)
 
-    def search_read(self, filters=None):
+    def search_read(self, params=None):
         """ Search records according to some criterias
         and returns their information"""
-        params = {}
-        if filters:
-            params.update(filters)
+        if not params:
+            params = {}
         response = self._call(self._woo_model, params=params)
         return response
 

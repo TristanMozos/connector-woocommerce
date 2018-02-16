@@ -18,14 +18,6 @@ class CustomerBatchImporter(Component):
     _inherit = 'woocommerce.delayed.batch.importer'
     _apply_on = 'woo.res.partner'
 
-    def run(self, filters=None):
-        """ Run the synchronization """
-        record_ids = self.backend_adapter.search(filters)
-        _logger.info('search for woo partners %s returned %s',
-                     filters, record_ids)
-        for record_id in record_ids:
-            self._import_record(record_id)
-
 
 class CustomerImporter(Component):
     _name = 'woocommerce.partner.importer'

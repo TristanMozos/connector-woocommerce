@@ -30,20 +30,6 @@ class SaleOrderBatchImporter(Component):
         return super(SaleOrderBatchImporter, self)._import_record(
             external_id, job_options=job_options)
 
-    def run(self, filters=None):
-        """ Run the synchronization """
-        record_ids = self.backend_adapter.search(filters)
-        order_ids = []
-        for record_id in record_ids:
-            woo_sale_order = self.env['woo.sale.order'].search(
-                [('external_id', '=', record_id)])
-            if not woo_sale_order:
-                order_ids.append(record_id)
-        _logger.info('search for woo partners %s returned %s',
-                     filters, record_ids)
-        for record_id in order_ids:
-            self._import_record(record_id)
-
 
 class SaleImportRule(Component):
     _name = 'woocommerce.sale.import.rule'

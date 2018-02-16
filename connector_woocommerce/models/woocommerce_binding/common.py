@@ -35,13 +35,13 @@ class WooBinding(models.AbstractModel):
 
     @job(default_channel='root.woocommerce')
     @api.model
-    def import_batch(self, backend, filters=None):
+    def import_batch(self, backend, params=None):
         """ Prepare the import of records modified on  Woocommerce"""
-        if filters is None:
-            filters = {}
+        if params is None:
+            params = {}
         with backend.work_on(self._name) as work:
             importer = work.component(usage='batch.importer')
-            return importer.run(filters=filters)
+            return importer.run(params=params)
 
     @job(default_channel='root.woocommerce')
     @api.model

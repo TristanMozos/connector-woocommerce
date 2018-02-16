@@ -223,11 +223,28 @@ class BatchImporter(AbstractComponent):
     _inherit = ['base.importer', 'base.woocommerce.connector']
     _usage = 'batch.importer'
 
-    def run(self, filters=None):
+    page_limit = 50
+
+    def run(self, params=None, **kwargs):
         """ Run the synchronization """
-        record_ids = self.backend_adapter.search(filters)
+        if params is None:
+            params = {}
+        if 'per_page' in params:
+            self._run_page(params, **kwargs)
+            return
+        page_number = 0
+        params['per_page'] = self.page_limit
+        record_ids = self._run_page(params, **kwargs)
+        while len(record_ids) == self.page_limit:
+            page_number += 1
+            params['page'] = page_number
+            record_ids = self._run_page(params, **kwargs)
+
+    def _run_page(self, params, **kwargs):
+        record_ids = self.backend_adapter.search(params=params)
         for record_id in record_ids:
-            self._import_record(record_id)
+            self._import_record(record_id, **kwargs)
+        return record_ids
 
     def _import_record(self, record_id):
         """ Import a record directly or delay the import of the record.

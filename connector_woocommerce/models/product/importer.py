@@ -24,14 +24,6 @@ class ProductBatchImporter(Component):
     _inherit = 'woocommerce.delayed.batch.importer'
     _apply_on = ['woo.product.product']
 
-    def run(self, filters=None):
-        """ Run the synchronization """
-        record_ids = self.backend_adapter.search(filters)
-        _logger.debug('search for woo Products %s returned %s',
-                      filters, record_ids)
-        for record_id in record_ids:
-            self._import_record(record_id)
-
 
 class ProductProductImporter(Component):
     _name = 'woocommerce.product.product.importer'
