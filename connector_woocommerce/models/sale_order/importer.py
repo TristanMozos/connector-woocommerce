@@ -5,6 +5,7 @@ import logging
 
 from datetime import datetime, timedelta
 from odoo import _
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from odoo.addons.component.core import Component
 from odoo.addons.connector.components.mapper import mapping
 from openerp.addons.connector.exception import RetryableJobError
@@ -305,6 +306,14 @@ class SaleOrderImportMapper(Component):
                 return {'status_id': status_id.id}
         else:
             return {'status_id': False}
+
+    @mapping
+    def date_order(self, record):
+        fmt = '%Y-%m-%dT%H:%M:%S'
+        date_order = datetime.strftime(
+            datetime.strptime(record['date_created'], fmt),
+            DEFAULT_SERVER_DATETIME_FORMAT)
+        return {'date_order': date_order}
 
     @mapping
     def customer_id(self, record):
