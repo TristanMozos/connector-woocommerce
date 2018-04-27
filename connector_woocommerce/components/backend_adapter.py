@@ -86,13 +86,16 @@ class WooAPI(object):
 
     @property
     def api(self):
+        is_https =\
+            urllib.parse.urlparse(self._location.location).scheme == 'https'
         if self._api is None:
             api = API(
                 url=self._location.location,
                 consumer_key=self._location.consumer_key,
                 consumer_secret=self._location.consumer_secret,
                 wp_api=True,
-                version="wc/v2"
+                version="wc/v1",
+                query_string_auth=is_https
             )
             self._api = api
         return self._api
