@@ -223,7 +223,7 @@ class BatchImporter(AbstractComponent):
     _inherit = ['base.importer', 'base.woocommerce.connector']
     _usage = 'batch.importer'
 
-    page_limit = 20
+    page_limit = 10
 
     def run(self, params=None, **kwargs):
         """ Run the synchronization """

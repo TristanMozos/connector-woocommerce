@@ -163,6 +163,7 @@ class WooBackend(models.Model):
         wcapi = API(url=location, consumer_key=cons_key,
                     consumer_secret=sec_key,
                     wp_api=True,
+                    timeout=20,
                     version="wc/v2")
         r = wcapi.get("products")
         if r.status_code == 404:

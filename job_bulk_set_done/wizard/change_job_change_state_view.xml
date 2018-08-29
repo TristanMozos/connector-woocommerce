@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_queue_job_change_state" model="ir.ui.view">
+            <field name="name">Queue Job Change State</field>
+            <field name="model">queue.job.change_state</field>
+            <field name="arch" type="xml">
+                <form string="Change State Queue Job">
+                    <group string="The selected jobs will be set done">
+                        <field name="job_ids" nolabel="1"/>
+                    </group>
+                    <footer>
+                        <button name="set_done_jobs" string="Set Done Jobs"
+                            type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window name="Set Done Jobs"
+            res_model="queue.job.change_state"
+            src_model="queue.job"
+            key2="client_action_multi"
+            multi="True"
+            view_mode="form"
+            view_type="form"
+            target="new"
+            id="action_set_done_jobs"/>
+
+    </data>
+</openerp>
