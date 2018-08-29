@@ -223,22 +223,25 @@ class BatchImporter(AbstractComponent):
     _inherit = ['base.importer', 'base.woocommerce.connector']
     _usage = 'batch.importer'
 
-    page_limit = 50
+    page_limit = 20
 
     def run(self, params=None, **kwargs):
         """ Run the synchronization """
         if params is None:
             params = {}
+
         if 'per_page' in params:
             self._run_page(params, **kwargs)
             return
         page_number = 0
         params['per_page'] = self.page_limit
-        record_ids = self._run_page(params, **kwargs)
-        while len(record_ids) == self.page_limit:
+        # record_ids = self._run_page(params, **kwargs)
+        while True:
             page_number += 1
             params['page'] = page_number
             record_ids = self._run_page(params, **kwargs)
+            if len(record_ids) != self.page_limit:
+                break
 
     def _run_page(self, params, **kwargs):
         record_ids = self.backend_adapter.search(params=params)
