@@ -94,7 +94,6 @@ class WooAPI(object):
                 consumer_key=self._location.consumer_key,
                 consumer_secret=self._location.consumer_secret,
                 wp_api=True,
-                timeout=20,
                 version="wc/v1",
                 query_string_auth=is_https
             )
