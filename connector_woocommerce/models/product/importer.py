@@ -73,8 +73,14 @@ class ProductImageImporter(Component):
         # sort them by the reverse priority (last item of the list has
         # the the higher priority)
 
+    def properEncode(self, url):
+        url = url.replace("á", "%c3%a1")
+        url = url.replace("ñ", "%c3%b1")
+        return url
+
     def _get_binary_image(self, image_data):
         url = image_data['src']
+        url = self.properEncode(url)
         try:
             request = urllib.request.Request(url)
             binary = urllib.request.urlopen(request)
