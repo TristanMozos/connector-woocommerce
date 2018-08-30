@@ -76,6 +76,9 @@ class ProductImageImporter(Component):
     def properEncode(self, url):
         url = url.replace("á", "%c3%a1")
         url = url.replace("ñ", "%c3%b1")
+        url = url.replace("~", "%cc%83")
+        url = url.replace("ó", "%c3%b3")
+        url = url.replace("´", "%c2%b4")
         return url
 
     def _get_binary_image(self, image_data):
@@ -167,3 +170,7 @@ class ProductProductImportMapper(Component):
     @mapping
     def backend_id(self, record):
         return {'backend_id': self.backend_record.id}
+
+    @mapping
+    def default_code(self, record):
+        return {'default_code': record['sku']}
