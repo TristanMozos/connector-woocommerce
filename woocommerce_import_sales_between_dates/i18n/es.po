@@ -1,0 +1,103 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* woocommerce_import_sales_between_dates
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-13 14:53+0000\n"
+"PO-Revision-Date: 2018-08-13 16:59+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: en\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#. module: woocommerce_import_sales_between_dates
+#: field:import.between.dates,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: woocommerce_import_sales_between_dates
+#: field:import.between.dates,create_date:0
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: woocommerce_import_sales_between_dates
+#: field:import.between.dates,display_name:0
+msgid "Display Name"
+msgstr "Nombre"
+
+#. module: woocommerce_import_sales_between_dates
+#: field:import.between.dates,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: woocommerce_import_sales_between_dates
+#: model:ir.actions.act_window,name:woocommerce_import_sales_between_dates.import_between_dates_action
+msgid "Import between dates"
+msgstr "Importar entre fechas"
+
+#. module: woocommerce_import_sales_between_dates
+#: view:import.between.dates:woocommerce_import_sales_between_dates.import_between_dates_form
+msgid "Import in background"
+msgstr "Importar en Segundo plano"
+
+#. module: woocommerce_import_sales_between_dates
+#: view:import.between.dates:woocommerce_import_sales_between_dates.import_between_dates_form
+msgid "Import sales between dates"
+msgstr "Importar pedidos de venta entre fechas"
+
+#. module: woocommerce_import_sales_between_dates
+#: view:wc.backend:woocommerce_import_sales_between_dates.view_wc_backend_form_between
+msgid "Import sales between two dates"
+msgstr "Importar pedidos de venta entre dos fechas"
+
+#. module: woocommerce_import_sales_between_dates
+#: field:import.between.dates,import_orders_from_date:0
+msgid "Import sales from"
+msgstr "Importar pedidos de venta desde:"
+
+#. module: woocommerce_import_sales_between_dates
+#: view:import.between.dates:woocommerce_import_sales_between_dates.import_between_dates_form
+msgid "Import sales from:"
+msgstr "Importar pedidos de venta desde:"
+
+#. module: woocommerce_import_sales_between_dates
+#: field:import.between.dates,import_orders_to_date:0
+msgid "Import sales to"
+msgstr "Importar pedidos de venta hasta"
+
+#. module: woocommerce_import_sales_between_dates
+#: field:import.between.dates,__last_update:0
+msgid "Last Modified on"
+msgstr "Última modificación"
+
+#. module: woocommerce_import_sales_between_dates
+#: field:import.between.dates,write_uid:0
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: woocommerce_import_sales_between_dates
+#: field:import.between.dates,write_date:0
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: woocommerce_import_sales_between_dates
+#: view:wc.backend:woocommerce_import_sales_between_dates.view_wc_backend_form_between
+msgid "Pick dates"
+msgstr "Seleccionar fechas"
+
+#. module: woocommerce_import_sales_between_dates
+#: model:ir.model,name:woocommerce_import_sales_between_dates.model_wc_backend
+msgid "WooCommerce Backend Configuration"
+msgstr "Configuración del Backend WooCommerce"
+
+#. module: woocommerce_import_sales_between_dates
+#: view:import.between.dates:woocommerce_import_sales_between_dates.import_between_dates_form
+msgid "to:"
+msgstr "Hasta:"

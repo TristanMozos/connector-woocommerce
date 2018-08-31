@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2018 FactorLibre - Álvaro Marcos <alvaro.marcos@factorlibre.com>
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<openerp>
+    <data>
+        <record id="import_between_dates_form" model="ir.ui.view">
+              <field name="name">import.between.dates.model</field>
+              <field name="model">import.between.dates</field>
+              <field name="arch" type="xml">
+                  <form string="Import sales between dates">
+                          <group>
+                              <div>
+                                 <label string="Import sales from:" class="oe_inline"/>
+                               </div>
+                                 <field name="import_orders_from_date"
+                                      class="oe_inline"
+                                      nolabel="1"/>
+                        </group>
+                         <group>
+                             <div>
+                                  <label string="to:" class="oe_inline"/>
+                             </div>
+                                  <field name="import_orders_to_date"
+                                       class="oe_inline"
+                                       nolabel="1"/>
+                         </group>
+                    <footer>
+                        <button name="import_orders"
+                            type="object"
+                            class="oe_highlight"
+                            string="Import in background"/>
+                    </footer>
+                  </form>
+              </field>
+        </record>
+
+        <record id="import_between_dates_action" model="ir.actions.act_window">
+            <field name="name">Import sales between dates</field>
+            <field name="res_model">import.between.dates</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>
