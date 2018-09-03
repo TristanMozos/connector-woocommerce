@@ -1,0 +1,50 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* woocommerce_import_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-03 14:10+0000\n"
+"PO-Revision-Date: 2018-09-03 16:11+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: en\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#. module: woocommerce_import_order
+#: model:ir.ui.view,arch_db:woocommerce_import_order.import_order_form
+msgid "Import in background"
+msgstr "Importar en Segundo plano"
+
+#. module: woocommerce_import_order
+#: model:ir.actions.act_window,name:woocommerce_import_order.import_order_action
+#: model:ir.ui.view,arch_db:woocommerce_import_order.import_order_form
+#: model:ir.ui.view,arch_db:woocommerce_import_order.view_wc_backend_form_between
+msgid "Import order"
+msgstr "Importar pedido"
+
+#. module: woocommerce_import_order
+#: model:ir.ui.view,arch_db:woocommerce_import_order.import_order_form
+msgid "Import order by ID:"
+msgstr "Importar pedido por ID:"
+
+#. module: woocommerce_import_order
+#: model:ir.ui.view,arch_db:woocommerce_import_order.view_wc_backend_form_between
+msgid "Import sale"
+msgstr "Importar pedido"
+
+#. module: woocommerce_import_order
+#: model:ir.model,name:woocommerce_import_order.model_wc_backend
+msgid "WooCommerce Backend Configuration"
+msgstr "WooCommerce Backend Configuration"
+
+#. module: woocommerce_import_order
+#: model:ir.model,name:woocommerce_import_order.model_import_order
+msgid "import.order"
+msgstr "import.order"
