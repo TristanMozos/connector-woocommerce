@@ -48,15 +48,22 @@ class ProductProductImporter(Component):
                 ('external_id', '=', value['id'])
             ]).odoo_id
             options = []
+            attribute_line_search = attribute_line.search([
+                ('attribute_id', '=', attribute_odoo.id),
+                ('product_tmpl_id', '=', binding.product_tmpl_id.id)
+            ], limit=1)
             for name in value['options']:
-                options += [self.env['woo.product.attribute.value'].search([
+                result_id = self.env['woo.product.attribute.value'].search([
                     ('name', '=', name)
-                ]).odoo_id.id]
-            attribute_line.create({
-                'attribute_id': attribute_odoo.id,
-                'value_ids': [(6, 0, options)],
-                'product_tmpl_id': binding.product_tmpl_id.id,
-            })
+                ]).odoo_id.id
+                if result_id not in attribute_line_search.value_ids.ids:
+                    options += [result_id]
+            if options:
+                attribute_line.create({
+                    'attribute_id': attribute_odoo.id,
+                    'value_ids': [(6, 0, options)],
+                    'product_tmpl_id': binding.product_tmpl_id.id,
+                })
 
     def _after_import(self, binding):
         """ Hook called at the end of the import """
