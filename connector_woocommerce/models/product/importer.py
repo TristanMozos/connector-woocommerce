@@ -36,11 +36,33 @@ class ProductProductImporter(Component):
         for woo_category in record['categories']:
             self._import_dependency(woo_category['id'],
                                     'woo.product.category')
+        for woo_attributes in record['attributes']:
+            self._import_dependency(woo_attributes['id'],
+                                    'woo.product.attribute')
+
+    def _set_attributes(self, binding):
+        record = self.woo_record
+        attribute_line = self.env['product.attribute.line']
+        for value in record['attributes']:
+            attribute_odoo = self.env['woo.product.attribute'].search([
+                ('external_id', '=', value['id'])
+            ]).odoo_id
+            options = []
+            for name in value['options']:
+                options += [self.env['woo.product.attribute.value'].search([
+                    ('name', '=', name)
+                ]).odoo_id.id]
+            attribute_line.create({
+                'attribute_id': attribute_odoo.id,
+                'value_ids': [(6, 0, options)],
+                'product_tmpl_id': binding.product_tmpl_id.id,
+            })
 
     def _after_import(self, binding):
         """ Hook called at the end of the import """
         image_importer = self.component(usage='product.image.importer')
         image_importer.run(self.woo_record, binding)
+        self._set_attributes(binding)
         return
 
 

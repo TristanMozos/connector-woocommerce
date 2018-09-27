@@ -95,7 +95,7 @@ class WooAPI(object):
                 consumer_secret=self._location.consumer_secret,
                 wp_api=True,
                 timeout=10,
-                version="wc/v1",
+                version="wc/v2",
                 query_string_auth=is_https
             )
             self._api = api
@@ -223,7 +223,6 @@ class GenericAdapter(AbstractComponent):
 
     def read(self, id, params=None):
         """ Returns the information of a record
-
         :rtype: dict
         """
         return self._call('%s/%s' % (self._woo_model, id), params=params)

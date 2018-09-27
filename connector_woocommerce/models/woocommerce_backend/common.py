@@ -190,6 +190,12 @@ class WooBackend(models.Model):
         return True
 
     @api.multi
+    def import_product_attributes(self):
+        for backend in self:
+            self.env['woo.product.attribute'].with_delay(
+                ).import_batch(backend)
+
+    @api.multi
     def import_customers(self):
         for backend in self:
             self.env['woo.res.partner'].with_delay().import_batch(backend)
