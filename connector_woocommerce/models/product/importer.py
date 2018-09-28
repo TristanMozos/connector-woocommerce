@@ -43,6 +43,7 @@ class ProductProductImporter(Component):
     def _set_attributes(self, binding):
         record = self.woo_record
         attribute_line = self.env['product.attribute.line']
+        product_product = self.env['product.product']
         for value in record['attributes']:
             attribute_odoo = self.env['woo.product.attribute'].search([
                 ('external_id', '=', value['id'])
@@ -64,6 +65,16 @@ class ProductProductImporter(Component):
                     'value_ids': [(6, 0, options)],
                     'product_tmpl_id': binding.product_tmpl_id.id,
                 })
+                for option in options:
+                    product_product.create({
+                          'type': binding.product_tmpl_id.type,
+                          'categ_id': binding.product_tmpl_id.categ_id.id or False,
+                          'lst_price': binding.product_tmpl_id.lst_price or False,
+                          'product_tmpl_id': binding.product_tmpl_id.id,
+                          'is_product_variant': True,
+                          'attribute_value_ids': [(6, 0, [option])]
+                      })
+
 
     def _after_import(self, binding):
         """ Hook called at the end of the import """
