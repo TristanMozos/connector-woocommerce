@@ -7,12 +7,9 @@ class wc_backend(models.Model):
     _inherit = 'wc.backend'
 
     @api.multi
-    def import_order(
-            self, order_id):
+    def import_order(self, order_id):
         for backend in self:
-            params = {}
             if order_id:
-                params['include'] = [order_id]
-            self.env['woo.sale.order'].with_delay().import_batch(
-                backend, params=params)
+                self.env['woo.sale.order'].import_record(
+                    backend, order_id)
         return True
