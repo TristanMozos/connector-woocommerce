@@ -182,7 +182,11 @@ class ProductTemplateImportMapper(Component):
 
     @mapping
     def type(self, record):
-        return {'type': record['type']}
+        product_type = record['type']
+        if product_type == 'variable':
+            return {'type': 'product'}
+        if product_type == 'simple':
+            return {'type': 'consu'}
 
     @mapping
     def categories(self, record):
