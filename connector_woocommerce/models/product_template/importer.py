@@ -78,7 +78,7 @@ class ProductTemplateImporter(Component):
         image_importer.run(self.woo_record, binding)
         self._set_attributes(binding)
         self._import_variants(binding)
-        self.deactivate_default_product(binding)
+        self._deactivate_default_product(binding)
         return
 
     def _deactivate_default_product(self, binding):
