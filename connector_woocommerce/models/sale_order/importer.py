@@ -131,18 +131,16 @@ class SaleOrderImporter(Component):
             partner = self.env['woo.res.partner'].search([
                 ('email', '=', partner_email),
                 ('backend_id', '=', self.backend_record.id)
-            ])
+            ], limit=1)
             if partner:
                 woocommerce_id = partner.external_id
                 if not str(woocommerce_id).startswith('guestorder:'):
                     record['customer_id'] = woocommerce_id
-
         is_guest_order = True
         if record.get('customer_id'):
             is_guest_order = False
             self._import_dependency(record['customer_id'],
                                     'woo.res.partner')
-
         partner_binder = self.binder_for('woo.res.partner')
         if is_guest_order:
             guest_customer_id = 'guestorder:%s' % record['number']
@@ -161,7 +159,8 @@ class SaleOrderImporter(Component):
             map_record = mapper.map_record(customer_record)
             partner_binding = self.env['woo.res.partner'].create(
                 map_record.values(for_create=True))
-            partner_binder.bind(guest_customer_id, partner_binding)
+            if not partner_binder.to_internal(guest_customer_id):
+                partner_binder.bind(guest_customer_id, partner_binding)
         else:
             importer = self.component(usage='record.importer',
                                       model_name='woo.res.partner')
@@ -234,14 +233,52 @@ class SaleOrderImporter(Component):
     def _import_dependencies(self):
         """ Import the dependencies for the record"""
         record = self.woo_record
-
         self._import_addresses()
         record = record['items']
         for line in record:
             _logger.debug('line: %s', line)
             if 'product_id' in line:
-                self._import_dependency(line['product_id'],
-                                        'woo.product.product')
+                self._import_product_dependency(line['variation_id'],
+                                                line['product_id'],
+                                                'woo.product.product')
+
+    def _import_dependency(self, external_id, binding_model,
+                           importer=None, always=False):
+        """ Import a dependency.
+
+        The importer class is a class or subclass of
+        :class:`WooImporter`. A specific class can be defined.
+
+        :param external_id: id of the related binding to import
+        :param binding_model: name of the binding model for the relation
+        :type binding_model: str | unicode
+        :param importer_cls: :class:`openerp.addons.connector.\
+                                     connector.ConnectorUnit`
+                             class or parent class to use for the export.
+                             By default: WooImporter
+        :type importer_cls: :class:`openerp.addons.connector.\
+                                    connector.MetaConnectorUnit`
+        :param always: if True, the record is updated even if it already
+                       exists, note that it is still skipped if it has
+                       not been modified on WooCommerce since the last
+                       update. When False, it will import it only when
+                       it does not yet exist.
+        :type always: boolean
+        """
+        if not external_id:
+            return
+        binder = self.binder_for(binding_model)
+        if always or not binder.to_internal(external_id):
+            if importer is None:
+                importer = self.component(usage='record.importer',
+                                          model_name=binding_model)
+            try:
+                importer.run(external_id)
+            except NothingToDoJob:
+                _logger.info(
+                    'Dependency import of %s(%s) has been ignored.',
+                    binding_model._name, external_id
+                )
 
     def _clean_woo_items(self, resource):
         """
@@ -267,6 +304,45 @@ class SaleOrderImporter(Component):
             all_items.append(top_item)
         resource['items'] = all_items
         return resource
+
+    def _import_product_dependency(self, external_id, id_template,
+                                   binding_model, importer=None, always=False):
+        """ Import a dependency.
+
+        The importer class is a class or subclass of
+        :class:`WooImporter`. A specific class can be defined.
+
+        :param external_id: id of the related binding to import
+        :param binding_model: name of the binding model for the relation
+        :type binding_model: str | unicode
+        :param importer_cls: :class:`openerp.addons.connector.\
+                                     connector.ConnectorUnit`
+                             class or parent class to use for the export.
+                             By default: WooImporter
+        :type importer_cls: :class:`openerp.addons.connector.\
+                                    connector.MetaConnectorUnit`
+        :param always: if True, the record is updated even if it already
+                       exists, note that it is still skipped if it has
+                       not been modified on WooCommerce since the last
+                       update. When False, it will import it only when
+                       it does not yet exist.
+        :type always: boolean
+        """
+        if not external_id:
+            return
+        binder = self.binder_for(binding_model)
+        if always or not binder.to_internal(external_id):
+            if importer is None:
+                importer = self.component(usage='record.importer',
+                                          model_name=binding_model)
+            try:
+                importer.run(external_id, id_template=id_template,
+                             binding_id=None)
+            except NothingToDoJob:
+                _logger.info(
+                    'Dependency import of %s(%s) has been ignored.',
+                    binding_model._name, external_id
+                )
 
     def _get_woo_data(self):
         """ Return the raw WooCommerce data for ``self.external_id`` """
@@ -441,10 +517,17 @@ class SaleOrderLineImportMapper(Component):
     @mapping
     def product_id(self, record):
         binder = self.binder_for('woo.product.product')
-        product = binder.to_internal(record['product_id'], unwrap=True)
+        if not record['variation_id']:
+            binding = self.env['product.product'].search([
+                ('default_code', '=', record['sku'])
+            ])
+            if binding:
+                product = binding
+        else:
+            product = binder.to_internal(record['variation_id'], unwrap=True)
         assert product is not None, (
             "product_id %s should have been imported in "
-            "SaleOrderImporter._import_dependencies" % record['product_id'])
+            "SaleOrderImporter._import_dependencies" % record['variation_id'])
         return {'product_id': product.id}
 
     @mapping

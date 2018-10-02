@@ -27,5 +27,6 @@ class WooModelBinder(Component):
         'woo.sale.order.line',
         'woo.product.attribute',
         'woo.product.attribute.value',
-        'woo.product.template'
+        'woo.product.template',
+        'woo.product.product'
     ]

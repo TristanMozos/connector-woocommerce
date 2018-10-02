@@ -5,6 +5,7 @@ from . import account_tax
 from . import delivery
 from . import partner
 from . import product_category
-from . import product
+from . import product_template
 from . import sale_order
 from . import product_attributes
+from . import product_variant

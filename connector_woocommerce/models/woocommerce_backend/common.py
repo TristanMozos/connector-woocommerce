@@ -185,9 +185,9 @@ class WooBackend(models.Model):
 
     @api.multi
     def import_products(self):
-        self.import_product_attributes()
+        # self.import_product_attributes()
         for backend in self:
-            self.env['woo.product.product'].with_delay(
+            self.env['woo.product.template'].with_delay(
                 priority=20).import_batch(backend)
         return True
 

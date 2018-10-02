@@ -20,15 +20,15 @@ class ProductBatchImporter(Component):
 
     For every product in the list, a delayed job is created.
     """
-    _name = 'woocommerce.product.product.batch.importer'
+    _name = 'woocommerce.product.template.batch.importer'
     _inherit = 'woocommerce.delayed.batch.importer'
-    _apply_on = ['woo.product.product']
+    _apply_on = ['woo.product.template']
 
 
-class ProductProductImporter(Component):
-    _name = 'woocommerce.product.product.importer'
+class ProductTemplateImporter(Component):
+    _name = 'woocommerce.product.template.importer'
     _inherit = 'woocommerce.importer'
-    _apply_on = ['woo.product.product']
+    _apply_on = ['woo.product.template']
 
     def _import_dependencies(self):
         """ Import the dependencies for the record"""
@@ -43,7 +43,7 @@ class ProductProductImporter(Component):
     def _set_attributes(self, binding):
         record = self.woo_record
         attribute_line = self.env['product.attribute.line']
-        product_product = self.env['product.product']
+        # product_product = self.env['product.product']
         for value in record['attributes']:
             attribute_odoo = self.env['woo.product.attribute'].search([
                 ('external_id', '=', value['id'])
@@ -51,7 +51,7 @@ class ProductProductImporter(Component):
             options = []
             attribute_line_search = attribute_line.search([
                 ('attribute_id', '=', attribute_odoo.id),
-                ('product_tmpl_id', '=', binding.product_tmpl_id.id)
+                ('product_tmpl_id', '=', binding.odoo_id.id)
             ], limit=1)
             for name in value['options']:
                 result_id = self.env['woo.product.attribute.value'].search([
@@ -64,21 +64,29 @@ class ProductProductImporter(Component):
                 attribute_line.create({
                     'attribute_id': attribute_odoo.id,
                     'value_ids': [(6, 0, options)],
-                    'product_tmpl_id': binding.product_tmpl_id.id,
+                    'product_tmpl_id': binding.odoo_id.id,
                 })
-                for option in options:
-                    product_product.create({
-                          'product_tmpl_id': binding.product_tmpl_id.id,
-                          'is_product_variant': True,
-                          'attribute_value_ids': [(6, 0, [option])]
-                      })
+
+    def _import_variants(self, binding):
+        self.woo_record['binding_id'] = binding.odoo_id.id
+        self.env['woo.product.product'].with_delay().import_batch(
+            self.backend_record, self.woo_record['id'], binding.odoo_id.id)
 
     def _after_import(self, binding):
         """ Hook called at the end of the import """
         image_importer = self.component(usage='product.image.importer')
         image_importer.run(self.woo_record, binding)
         self._set_attributes(binding)
+        self._import_variants(binding)
+        self.deactivate_default_product(binding)
         return
+
+    def _deactivate_default_product(self, binding):
+        if binding.product_variant_count != 1:
+            for product in binding.product_variant_ids:
+                if not product.attribute_value_ids:
+                    self.env['product.product'].browse(product.id).write(
+                        {'active': False})
 
 
 class ProductImageImporter(Component):
@@ -90,7 +98,7 @@ class ProductImageImporter(Component):
     """
     _name = 'woocommerce.product.image.importer'
     _inherit = 'woocommerce.importer'
-    _apply_on = ['woo.product.product']
+    _apply_on = ['woo.product.template']
     _usage = 'product.image.importer'
 
     def _get_images(self, storeview_id=None):
@@ -133,6 +141,8 @@ class ProductImageImporter(Component):
                 # so we propagate the error, the import will fail
                 # and we have to check why it couldn't be accessed
                 raise
+        except UnicodeEncodeError as err:
+            return
         else:
             return binary.read()
 
@@ -151,10 +161,10 @@ class ProductImageImporter(Component):
         self._write_image_data(binding, binary, image_data)
 
 
-class ProductProductImportMapper(Component):
-    _name = 'woocommerce.product.product.import.mapper'
+class ProductTemplateImportMapper(Component):
+    _name = 'woocommerce.product.template.import.mapper'
     _inherit = 'woocommerce.import.mapper'
-    _apply_on = 'woo.product.product'
+    _apply_on = 'woo.product.template'
 
     direct = [
         ('name', 'name'),
@@ -170,15 +180,9 @@ class ProductProductImportMapper(Component):
         status == 1 in Woo means active"""
         return {'active': record.get('catalog_visibility') == 'visible'}
 
-    # @mapping
-    # def in_stock(self, record):
-    #     if record['product']:
-    #         rec = record['product']
-    #         return {'in_stock': rec['in_stock']}
-
     @mapping
     def type(self, record):
-        return {'type': 'product'}
+        return {'type': record['type']}
 
     @mapping
     def categories(self, record):
@@ -209,5 +213,16 @@ class ProductProductImportMapper(Component):
         return {'backend_id': self.backend_record.id}
 
     @mapping
+    def list_price(self, record):
+        return {
+            'list_price': record['price'],
+            'lst_price': record['price']
+        }
+
+    @mapping
     def default_code(self, record):
         return {'default_code': record['sku']}
+
+    @mapping
+    def weight(self, record):
+        return {'weight': record['weight']}
