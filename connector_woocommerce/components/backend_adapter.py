@@ -114,6 +114,8 @@ class WooAPI(object):
                                 method, endpoint))
                     endpoint_args.append(data)
                 response = getattr(self.api, method)(*endpoint_args)
+                _logger.error("api.call(%s) failed with method %s, response: %s" % (
+                    endpoint, method, response))
                 if not response.ok:
                     response_json = response.json()
                     if response_json.get('code') and \
