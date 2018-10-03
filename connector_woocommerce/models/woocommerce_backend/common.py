@@ -171,6 +171,8 @@ class WooBackend(models.Model):
         val = r.json()
         msg = ''
         if 'errors' in r.json():
+            _logger.error("api.call(%s) failed with method %s, response: %s" % (
+                location, 'get', r))
             msg = val['errors'][0]['message'] + '\n' + val['errors'][0]['code']
             raise UserError(_(msg))
         else:

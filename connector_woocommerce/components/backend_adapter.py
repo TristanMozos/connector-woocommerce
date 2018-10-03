@@ -94,7 +94,7 @@ class WooAPI(object):
                 consumer_key=self._location.consumer_key,
                 consumer_secret=self._location.consumer_secret,
                 wp_api=True,
-                timeout=20,
+                timeout=60,
                 version="wc/v2",
                 query_string_auth=is_https
             )
@@ -114,8 +114,6 @@ class WooAPI(object):
                                 method, endpoint))
                     endpoint_args.append(data)
                 response = getattr(self.api, method)(*endpoint_args)
-                _logger.error("api.call(%s) failed with method %s, response: %s" % (
-                    endpoint, method, response))
                 if not response.ok:
                     response_json = response.json()
                     if response_json.get('code') and \
