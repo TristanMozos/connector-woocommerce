@@ -68,9 +68,8 @@ class ProductTemplateImporter(Component):
                 })
 
     def _import_variants(self, binding):
-        self.woo_record['binding_id'] = binding.odoo_id.id
         self.env['woo.product.product'].with_delay().import_batch(
-            self.backend_record, self.woo_record['id'], binding.odoo_id.id)
+            self.backend_record, self.woo_record['id'])
 
     def _after_import(self, binding):
         """ Hook called at the end of the import """
@@ -173,12 +172,12 @@ class ProductTemplateImportMapper(Component):
         ('price', 'list_price')
     ]
 
-    @mapping
-    def is_active(self, record):
-        """Check if the product is active in Woo
-        and set active flag in OpenERP
-        status == 1 in Woo means active"""
-        return {'active': record.get('catalog_visibility') == 'visible'}
+    # @mapping
+    # def is_active(self, record):
+    #     """Check if the product is active in Woo
+    #     and set active flag in OpenERP
+    #     status == 1 in Woo means active"""
+    #     return {'active': record.get('catalog_visibility') == 'visible'}
 
     @mapping
     def type(self, record):

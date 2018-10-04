@@ -16,35 +16,36 @@ class ProductProductBatchImporter(Component):
     _inherit = 'woocommerce.delayed.batch.importer'
     _apply_on = ['woo.product.product']
 
-    def _run_page(self, external_id, template_id, params, **kwargs):
+    def _run_page(self, external_id, params, **kwargs):
         record_ids = self.backend_adapter.search(external_id, params=params)
         for record_id in record_ids:
-            self._import_record(record_id['id'], external_id, template_id,
+            binder = self.binder_for('woo.product.template')
+            id_template = binder.to_internal(external_id).id
+            self._import_record(record_id['id'], id_template,
                                 job_options=None, **kwargs)
         return record_ids
 
-    def _import_record(self, external_id, id_template, binding_id,
+    def _import_record(self, external_id, id_template,
                        job_options=None, **kwargs):
         """ Delay the import of the records"""
         delayable = self.model.with_delay(**job_options or {})
         delayable.import_record(self.backend_record, external_id,
-                                id_template, binding_id, **kwargs)
+                                id_template, **kwargs)
 
-    def run(self, external_id, template_id, params=None, **kwargs):
+    def run(self, external_id, params=None, **kwargs):
         """ Run the synchronization """
         if params is None:
             params = {}
 
         if 'per_page' in params:
-            self._run_page(external_id, template_id, params, **kwargs)
+            self._run_page(external_id, params, **kwargs)
             return
         page_number = 0
         params['per_page'] = self.page_limit
         while True:
             page_number += 1
             params['page'] = page_number
-            record_ids = self._run_page(external_id, template_id,
-                                        params, **kwargs)
+            record_ids = self._run_page(external_id, params, **kwargs)
             if len(record_ids) != self.page_limit:
                 break
 
@@ -54,7 +55,7 @@ class ProductProductImporter(Component):
     _inherit = 'woocommerce.importer'
     _apply_on = ['woo.product.product']
 
-    def run(self, external_id, id_template, binding_id, force=False):
+    def run(self, external_id, id_template, force=False):
         """ Run the synchronization
 
         :param external_id: identifier of the record on WooCommerce
@@ -69,7 +70,6 @@ class ProductProductImporter(Component):
 
         try:
             self.woo_record = self._get_woo_data(external_id, id_template)
-            self.woo_record['binding_id'] = binding_id
         except IDMissingInBackend:
             return _('Record does no longer exist in WooCommerce')
         skip = self._must_skip()
@@ -121,15 +121,10 @@ class ProductProductImportMapper(Component):
 
     @mapping
     def product_tmpl_id(self, record):
-        if record['binding_id']:
-            return {
-                'product_tmpl_id': record['binding_id']
-            }
-        else:
-            binder = self.binder_for('woo.product.template')
-            template = binder.to_internal(record['id_template'], unwrap=True)
-            if template:
-                return {'product_tmpl_id': template.id}
+        binder = self.binder_for('woo.product.template')
+        template = binder.to_internal(record['id_template'], unwrap=True)
+        if template:
+            return {'product_tmpl_id': template.id}
 
     @mapping
     def name(self, record):

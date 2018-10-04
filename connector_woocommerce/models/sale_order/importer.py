@@ -332,17 +332,20 @@ class SaleOrderImporter(Component):
             return
         binder = self.binder_for(binding_model)
         if always or not binder.to_internal(external_id):
-            if importer is None:
-                importer = self.component(usage='record.importer',
-                                          model_name=binding_model)
-            try:
-                importer.run(external_id, id_template=id_template,
-                             binding_id=None)
-            except NothingToDoJob:
-                _logger.info(
-                    'Dependency import of %s(%s) has been ignored.',
-                    binding_model._name, external_id
-                )
+            binding = self.env['product.product'].search([
+                ('default_code', '=', self.woo_record['sku'])
+            ])
+            if not binding:
+                if importer is None:
+                    importer = self.component(usage='record.importer',
+                                              model_name=binding_model)
+                try:
+                    importer.run(external_id, id_template)
+                except NothingToDoJob:
+                    _logger.info(
+                        'Dependency import of %s(%s) has been ignored.',
+                        binding_model._name, external_id
+                    )
 
     def _get_woo_data(self):
         """ Return the raw WooCommerce data for ``self.external_id`` """
@@ -517,6 +520,7 @@ class SaleOrderLineImportMapper(Component):
     @mapping
     def product_id(self, record):
         binder = self.binder_for('woo.product.product')
+        product = None
         if not record['variation_id']:
             binding = self.env['product.product'].search([
                 ('default_code', '=', record['sku'])
@@ -525,6 +529,9 @@ class SaleOrderLineImportMapper(Component):
                 product = binding
         else:
             product = binder.to_internal(record['variation_id'], unwrap=True)
+        if not product:
+            raise FailedJobError("""There is an item without id_variation and
+                                 sku in this order""")
         assert product is not None, (
             "product_id %s should have been imported in "
             "SaleOrderImporter._import_dependencies" % record['variation_id'])

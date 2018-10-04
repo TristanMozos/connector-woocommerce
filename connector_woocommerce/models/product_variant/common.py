@@ -36,23 +36,22 @@ class WooProductProduct(models.Model):
 
     @job(default_channel='root.woocommerce')
     @api.model
-    def import_batch(self, backend, external_id, template_id, params=None):
+    def import_batch(self, backend, external_id, params=None):
         """ Prepare the import of records modified on  Woocommerce"""
         if params is None:
             params = {}
         with backend.work_on(self._name) as work:
             importer = work.component(usage='batch.importer')
-            return importer.run(external_id, template_id, params=params)
+            return importer.run(external_id, params=params)
 
     @job(default_channel='root.woocommerce')
     @api.model
     def import_record(self, backend, external_id, id_attribute,
-                      binding_id, force=False):
+                      force=False):
         """ Import a Woocommerce record """
         with backend.work_on(self._name) as work:
             importer = work.component(usage='record.importer')
-            return importer.run(external_id, id_attribute,
-                                binding_id, force=force)
+            return importer.run(external_id, id_attribute, force=force)
 
 
 class ProductProductAdapter(Component):
@@ -75,5 +74,7 @@ class ProductProductAdapter(Component):
         """
         self._woo_model = self._woo_model.format(template_id=id_template)
         values = self._call('%s/%s' % (self._woo_model, id), params=params)
-        values['id_template'] = id_template
+        binder = self.binder_for('woo.product.template')
+        template = binder.to_internal(id_template, unwrap=True)
+        values['id_template'] = template.id
         return values
