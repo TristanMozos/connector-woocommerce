@@ -19,9 +19,7 @@ class ProductProductBatchImporter(Component):
     def _run_page(self, external_id, params, **kwargs):
         record_ids = self.backend_adapter.search(external_id, params=params)
         for record_id in record_ids:
-            binder = self.binder_for('woo.product.template')
-            id_template = binder.to_internal(external_id).id
-            self._import_record(record_id['id'], id_template,
+            self._import_record(record_id['id'], external_id,
                                 job_options=None, **kwargs)
         return record_ids
 
@@ -146,17 +144,11 @@ class ProductProductImportMapper(Component):
         for attribute in record['attributes']:
             result_id = self.env['product.attribute.value'].search([
                 ('name', '=', attribute['option'])
-            ]).id
+            ])
             if result_id:
-                options += [result_id]
+                options += [result_id.id]
         return {
             'attribute_value_ids': [(6, 0, options)]
-        }
-
-    @mapping
-    def qty_available(self, record):
-        return {
-            'qty_available': record['stock_quantity']
         }
 
     @mapping

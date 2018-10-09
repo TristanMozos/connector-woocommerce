@@ -46,26 +46,27 @@ class ProductTemplateImporter(Component):
         # product_product = self.env['product.product']
         for value in record['attributes']:
             attribute_odoo = self.env['woo.product.attribute'].search([
-                ('external_id', '=', value['id'])
-            ]).odoo_id
-            options = []
-            attribute_line_search = attribute_line.search([
-                ('attribute_id', '=', attribute_odoo.id),
-                ('product_tmpl_id', '=', binding.odoo_id.id)
-            ], limit=1)
-            for name in value['options']:
-                result_id = self.env['woo.product.attribute.value'].search([
-                    ('name', '=', name)
-                ]).odoo_id.id
-                if result_id and result_id not in \
-                        attribute_line_search.value_ids.ids:
-                    options += [result_id]
-            if options:
-                attribute_line.create({
-                    'attribute_id': attribute_odoo.id,
-                    'value_ids': [(6, 0, options)],
-                    'product_tmpl_id': binding.odoo_id.id,
-                })
+                ('external_id', '=', value['name'])
+            ])
+            if attribute_odoo:
+                options = []
+                attribute_line_search = attribute_line.search([
+                    ('attribute_id', '=', attribute_odoo.odoo_id.id),
+                    ('product_tmpl_id', '=', binding.odoo_id.id)
+                ], limit=1)
+                for name in value['options']:
+                    result_id = self.env['woo.product.attribute.value'].search([
+                        ('name', '=', name)
+                    ]).odoo_id.id
+                    if result_id and result_id not in \
+                            attribute_line_search.value_ids.ids:
+                        options += [result_id]
+                if options:
+                    attribute_line.create({
+                        'attribute_id': attribute_odoo.id,
+                        'value_ids': [(6, 0, options)],
+                        'product_tmpl_id': binding.odoo_id.id,
+                    })
 
     def _import_variants(self, binding):
         self.env['woo.product.product'].with_delay().import_batch(
@@ -75,6 +76,7 @@ class ProductTemplateImporter(Component):
         """ Hook called at the end of the import """
         image_importer = self.component(usage='product.image.importer')
         image_importer.run(self.woo_record, binding)
+        self._import_dependencies()
         self._set_attributes(binding)
         self._import_variants(binding)
         self._deactivate_default_product(binding)

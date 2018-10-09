@@ -74,7 +74,5 @@ class ProductProductAdapter(Component):
         """
         self._woo_model = self._woo_model.format(template_id=id_template)
         values = self._call('%s/%s' % (self._woo_model, id), params=params)
-        binder = self.binder_for('woo.product.template')
-        template = binder.to_internal(id_template, unwrap=True)
-        values['id_template'] = template.id
+        values['id_template'] = id_template
         return values
