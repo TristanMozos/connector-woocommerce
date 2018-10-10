@@ -85,7 +85,7 @@ class ProductProductImporter(Component):
         self._before_import()
 
         # import the missing linked resources
-        self._import_dependencies()
+        self._import_dependencies(id_template)
 
         map_record = self._map_data()
 
@@ -106,6 +106,12 @@ class ProductProductImporter(Component):
     def _after_import(self, binding):
         """ Hook called at the end of the import """
         return
+
+    def _import_dependencies(self, id_template):
+        binder = self.binder_for('woo.product.template')
+        template = binder.to_internal(id_template, unwrap=True)
+        if not template:
+            self._import_dependency(id_template, 'woo.product.template')
 
 
 class ProductProductImportMapper(Component):
