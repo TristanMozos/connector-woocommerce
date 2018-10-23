@@ -251,3 +251,7 @@ class WooBackend(models.Model):
     @api.model
     def _scheduler_update_product_stock_qty(self, domain=None):
         self._woocommerce_backend('update_product_stock_qty', domain=domain)
+
+    @api.model
+    def _scheduler_import_products(self, domain=None):
+        self._woocommerce_backend('import_products', domain=domain)
