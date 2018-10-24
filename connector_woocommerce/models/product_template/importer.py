@@ -46,7 +46,7 @@ class ProductTemplateImporter(Component):
         # product_product = self.env['product.product']
         for value in record['attributes']:
             attribute_odoo = self.env['woo.product.attribute'].search([
-                ('external_id', '=', value['name'])
+                ('external_id', '=', value['id'])
             ])
             if attribute_odoo:
                 options = []
@@ -56,14 +56,14 @@ class ProductTemplateImporter(Component):
                 ], limit=1)
                 for name in value['options']:
                     result_id = self.env['woo.product.attribute.value'].search([
-                        ('name', '=', name)
+                        ('name', '=', name),
                     ]).odoo_id.id
                     if result_id and result_id not in \
                             attribute_line_search.value_ids.ids:
                         options += [result_id]
                 if options:
                     attribute_line.create({
-                        'attribute_id': attribute_odoo.id,
+                        'attribute_id': attribute_odoo.odoo_id.id,
                         'value_ids': [(6, 0, options)],
                         'product_tmpl_id': binding.odoo_id.id,
                     })
