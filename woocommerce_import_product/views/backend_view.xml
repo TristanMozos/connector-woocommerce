@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_wc_backend_form_product" model="ir.ui.view">
+            <field name="name">wc.backend.form</field>
+            <field name="model">wc.backend</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="connector_woocommerce.view_wc_backend_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='import']" position="inside">
+                    <group>
+                        <div>
+                           <label string="Import product" class="oe_inline"/>
+                        </div>
+                        <button name="%(import_product_action)d"
+                            type="action"
+                            class="oe_highlight"
+                            string="Import product"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -35,7 +35,8 @@ class WooImporter(AbstractComponent):
     def _is_uptodate(self, binding):
         """Return True if the import should be skipped because
         it is already up-to-date in OpenERP"""
-        WOO_DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
+
+        WOO_DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S'
         dt_fmt = WOO_DATETIME_FORMAT
         assert self.woo_record
         if not self.woo_record:
@@ -47,9 +48,10 @@ class WooImporter(AbstractComponent):
             return
         from_string = fields.Datetime.from_string
         sync_date = from_string(sync)
-        self.woo_record['updated_at'] = {}
-        self.woo_record['updated_at'] = {'to': datetime.now().strftime(dt_fmt)}
-        woo_date = from_string(self.woo_record['updated_at']['to'])
+        # self.woo_record['updated_at'] = {}
+        # self.woo_record['updated_at'] = {'to': datetime.now().strftime(dt_fmt)}
+        # woo_date = from_string(self.woo_record['updated_at']['to'])
+        woo_date = datetime.strptime(self.woo_record['date_modified'], dt_fmt)
         # if the last synchronization date is greater than the last
         # update in woo, we skip the import.
         # Important: at the beginning of the exporters flows, we have to
