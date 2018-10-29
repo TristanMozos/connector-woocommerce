@@ -236,6 +236,17 @@ class WooBackend(models.Model):
         woo_products.recompute_wocommerce_qty()
         return True
 
+    @api.multi
+    def force_product_stock_qty(self):
+        woo_product_env = self.env['woo.product.product']
+        domain = self._domain_for_update_product_stock_qty()
+        woo_products = woo_product_env.search(domain)
+        for product in woo_products:
+            product.with_delay(priority=22).export_inventory(
+                fields='woo_qty'
+            )
+        return True
+
     @api.model
     def _woocommerce_backend(self, callback, domain=None):
         if domain is None:
@@ -251,6 +262,10 @@ class WooBackend(models.Model):
     @api.model
     def _scheduler_update_product_stock_qty(self, domain=None):
         self._woocommerce_backend('update_product_stock_qty', domain=domain)
+
+    @api.model
+    def _scheduler_force_product_stock_qty(self, domain=None):
+        self._woocommerce_backend('force_product_stock_qty', domain=domain)
 
     @api.model
     def _scheduler_import_products(self, domain=None):

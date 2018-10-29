@@ -57,6 +57,17 @@ class WooProductProduct(models.Model):
             exporter = work.component(usage='product.inventory.exporter')
             return exporter.run(self, fields)
 
+    # @job(default_channel='root.woocommerce')
+    # @related_action(action='related_action_unwrap_binding')
+    # @api.model
+    # def export_inventory_batch(self, fields, params=None):
+    #     """ Prepare the import of records modified on  Woocommerce"""
+    #     if params is None:
+    #         params = {}
+    #     with self.backend_id.work_on(self._name) as work:
+    #         exporter = work.component(usage='product.inventory.exporter')
+    #         return exporter.run(self, fields)
+
     @job(default_channel='root.woocommerce')
     @api.model
     def import_batch(self, backend, external_id, params=None):
