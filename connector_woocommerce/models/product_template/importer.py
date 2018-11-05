@@ -57,6 +57,7 @@ class ProductTemplateImporter(Component):
                 for name in value['options']:
                     result_id = self.env['woo.product.attribute.value'].search([
                         ('name', '=', name),
+                        ('attribute_id', '=', attribute_odoo.odoo_id.id)
                     ]).odoo_id.id
                     if result_id and result_id not in \
                             attribute_line_search.value_ids.ids:
@@ -149,7 +150,11 @@ class ProductImageImporter(Component):
 
     def _write_image_data(self, binding, binary, image_data):
         binding = binding.with_context(connector_no_export=True)
-        binding.write({'image': base64.b64encode(binary)})
+        try:
+            binding.write({'image': base64.b64encode(binary)})
+        except OSError:
+            _logger.error("La imagen '%s' no puede ser cargada"
+                          % (image_data['src']))
 
     def run(self, woo_record, binding):
         images = woo_record['images']
