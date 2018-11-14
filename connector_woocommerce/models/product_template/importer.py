@@ -70,7 +70,7 @@ class ProductTemplateImporter(Component):
                     })
 
     def _import_variants(self, binding):
-        self.env['woo.product.product'].with_delay().import_batch(
+        self.env['woo.product.product'].with_delay(priority=8).import_batch(
             self.backend_record, self.woo_record['id'])
 
     def _after_import(self, binding):

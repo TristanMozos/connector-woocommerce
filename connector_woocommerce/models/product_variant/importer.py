@@ -26,7 +26,7 @@ class ProductProductBatchImporter(Component):
     def _import_record(self, external_id, id_template,
                        job_options=None, **kwargs):
         """ Delay the import of the records"""
-        delayable = self.model.with_delay(**job_options or {})
+        delayable = self.model.with_delay(priority=6, **job_options or {})
         delayable.import_record(self.backend_record, external_id,
                                 id_template, **kwargs)
 
