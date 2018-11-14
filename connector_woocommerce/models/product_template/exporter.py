@@ -5,10 +5,10 @@ from odoo.addons.component.core import Component
 
 
 class ProductInventoryExporter(Component):
-    _name = 'woo.product.inventory.exporter'
+    _name = 'woo.product.template.inventory.exporter'
     _inherit = 'woocommerce.exporter'
     _apply_on = ['woo.product.template']
-    _usage = 'product.inventory.exporter'
+    _usage = 'product.template.inventory.exporter'
 
     def _get_data(self, binding, fields):
         result = {}

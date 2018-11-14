@@ -10,8 +10,6 @@ from odoo import api, models, fields
 from odoo.addons.component.core import Component
 from odoo.addons.component_event import skip_if
 from odoo.addons.queue_job.job import job, related_action
-
-
 _logger = logging.getLogger(__name__)
 
 
@@ -61,7 +59,7 @@ class WooProductTemplate(models.Model):
         """ Export the inventory configuration and quantity of a product. """
         self.ensure_one()
         with self.backend_id.work_on(self._name) as work:
-            exporter = work.component(usage='product.inventory.exporter')
+            exporter = work.component(usage='product.template.inventory.exporter')
             return exporter.run(self, fields)
 
     @api.multi
