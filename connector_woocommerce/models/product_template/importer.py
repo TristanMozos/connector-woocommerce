@@ -80,15 +80,17 @@ class ProductTemplateImporter(Component):
         self._import_dependencies()
         self._set_attributes(binding)
         self._import_variants(binding)
-        self._deactivate_default_product(binding)
+        self._correct_variant(binding)
         return
 
-    def _deactivate_default_product(self, binding):
-        if binding.product_variant_count != 1:
-            for product in binding.product_variant_ids:
-                if not product.attribute_value_ids:
-                    self.env['product.product'].browse(product.id).write(
-                        {'active': False})
+    def _correct_variant(self, binding):
+        product_tmp = self.env['product.product']
+        product_ids = product_tmp.search([
+                ('product_tmpl_id', '=', binding.odoo_id.id),
+                ('attribute_value_ids', '=', False),
+        ])
+        for product in product_ids:
+            product.active = False
 
 
 class ProductImageImporter(Component):

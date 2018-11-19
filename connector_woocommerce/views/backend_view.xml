@@ -46,7 +46,11 @@
                         string="Import in background" />
                     </group>
                     <group>
-                      <label string="Import Product" class="oe_inline" />
+                      <div>
+                          <label string="Import Product since" class="oe_inline" />
+                          <field name="import_products_since" class="oe_inline"
+    										nolabel="1" />
+                      </div>
                       <button name="import_products" type="object" class="oe_highlight"
                         string="Import in background" />
                     </group>

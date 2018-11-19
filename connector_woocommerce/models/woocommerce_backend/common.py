@@ -52,6 +52,7 @@ class WooBackend(models.Model):
     consumer_secret = fields.Char("Consumer Secret")
     version = fields.Selection(selection='select_versions', required=True)
     verify_ssl = fields.Boolean("Verify SSL")
+    import_products_since = fields.Datetime('Import Products since')
     warehouse_id = fields.Many2one(
         comodel_name='stock.warehouse',
         string='Warehouse',
@@ -189,8 +190,16 @@ class WooBackend(models.Model):
     def import_products(self):
         # self.import_product_attributes()
         for backend in self:
+            params = {}
+            import_start_time = datetime.now()
+            if backend.import_products_since:
+                params['after'] = self._date_as_user_tz(
+                    backend.import_products_since)
             self.env['woo.product.template'].with_delay(
-                priority=20).import_batch(backend)
+                priority=20).import_batch(backend, params=params)
+            next_time = import_start_time - timedelta(seconds=30)
+            next_time = fields.Datetime.to_string(next_time)
+            self.write({'import_products_since': next_time})
         return True
 
     @api.multi
@@ -215,9 +224,9 @@ class WooBackend(models.Model):
                     backend.import_orders_from_date)
             self.env['woo.sale.order'].with_delay().import_batch(
                 backend, params=params)
-        next_time = import_start_time - timedelta(seconds=30)
-        next_time = fields.Datetime.to_string(next_time)
-        self.write({'import_orders_from_date': next_time})
+            next_time = import_start_time - timedelta(seconds=30)
+            next_time = fields.Datetime.to_string(next_time)
+            self.write({'import_orders_from_date': next_time})
         return True
 
     @api.multi

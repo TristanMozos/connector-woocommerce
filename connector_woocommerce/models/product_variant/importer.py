@@ -105,6 +105,7 @@ class ProductProductImporter(Component):
 
     def _after_import(self, binding):
         """ Hook called at the end of the import """
+        self._correct_variant(binding)
         return
 
     def _import_dependencies(self, id_template):
@@ -112,6 +113,15 @@ class ProductProductImporter(Component):
         template = binder.to_internal(id_template, unwrap=True)
         if not template:
             self._import_dependency(id_template, 'woo.product.template')
+
+    def _correct_variant(self, binding):
+        product_tmp = self.env['product.product']
+        product_ids = product_tmp.search([
+                ('product_tmpl_id', '=', binding.odoo_id.product_tmpl_id.id),
+                ('attribute_value_ids', '=', False),
+        ])
+        for product in product_ids:
+            product.active = False
 
 
 class ProductProductImportMapper(Component):
