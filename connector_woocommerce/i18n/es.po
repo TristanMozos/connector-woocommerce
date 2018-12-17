@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-19 16:09+0000\n"
-"PO-Revision-Date: 2018-11-19 17:13+0100\n"
+"POT-Creation-Date: 2018-02-16 12:50+0000\n"
+"PO-Revision-Date: 2018-02-16 13:59+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,14 +18,7 @@ msgstr ""
 "X-Generator: Poedit 1.8.7.1\n"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_meeting_count
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_meeting_count
-msgid "# Meetings"
-msgstr "Nº reuniones"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_product_variant_count
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_product_variant_count
 msgid "# Product Variants"
 msgstr "# Variantes de producto"
 
@@ -35,33 +28,14 @@ msgid "# Products"
 msgstr "# Productos"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_purchase_count
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_purchase_count
-msgid "# Purchases"
-msgstr "Nº Compras"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_sales_count
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_sales_count
 msgid "# Sales"
 msgstr "# Ventas"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_supplier_invoice_count
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_supplier_invoice_count
-msgid "# Vendor Bills"
-msgstr "# Facturas de proveedores"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_invoice_count
 msgid "# of Invoices"
 msgstr "# de Facturas"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_purchase_order_count
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_purchase_order_count
-msgid "# of Purchase Order"
-msgstr "Nº de Pedido de compra"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_sale_order_count
@@ -70,24 +44,25 @@ msgid "# of Sales Order"
 msgstr "# de Pedido de Venta"
 
 #. module: connector_woocommerce
+#: model:ir.ui.view,arch_db:connector_woocommerce.view_woo_product_form
+msgid "(recompute)"
+msgstr "(recompute)"
+
+#. module: connector_woocommerce
 #: sql_constraint:woo.account.tax:0 sql_constraint:woo.address:0
-#: sql_constraint:woo.binding:0 sql_constraint:woo.product.attribute:0
-#: sql_constraint:woo.product.attribute.value:0
-#: sql_constraint:woo.product.category:0 sql_constraint:woo.product.product:0
-#: sql_constraint:woo.product.template:0 sql_constraint:woo.res.partner:0
+#: sql_constraint:woo.binding:0 sql_constraint:woo.product.category:0
+#: sql_constraint:woo.product.product:0 sql_constraint:woo.res.partner:0
 #: sql_constraint:woo.sale.order:0
 msgid "A binding already exists with the same Woo ID."
 msgstr "Ya existe un binding con la misma ID de Woocommerce"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_description_sale
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_description_sale
 msgid "A description of the Product that you want to communicate to your customers. This description will be copied to every Sales Order, Delivery Order and Customer Invoice/Credit Note"
 msgstr "Una descripción del producto que quiera comunicar a sus clientes. Esta descripción se copiará a cada pedido de venta, albarán de salida y factura de cliente."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_description_purchase
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_description_purchase
 msgid "A description of the Product that you want to communicate to your vendors. This description will be copied to every Purchase Order, Receipt and Vendor Bill/Credit Note."
 msgstr "Una descripción del producto que quiere comunicar a sus proveedores. Esta descripción se reflejará en todos los pedidos de compra, recibos y facturas de proveedor."
 
@@ -113,23 +88,21 @@ msgstr "A partner address can only have one binding by backend."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_description
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_description
 msgid "A precise description of the Product, used only for internal information purposes."
 msgstr "Una descripción precisa del producto, usada sólo para propósitos de información interna."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_type
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_type
 msgid ""
 "A stockable product is a product for which you manage stock. The \"Inventory\" app has to be installed.\n"
 "A consumable product, on the other hand, is a product for which stock is not managed.\n"
 "A service is a non-material product you provide.\n"
 "A digital content is a non-material product you sell online. The files attached to the products are the one that are sold on the e-commerce such as e-books, music, pictures,... The \"Digital Product\" module has to be installed."
 msgstr ""
-"Un producto almacenable es un producto para el que usted gestiona el stock. La aplicación \"Inventario\" debe instalarse.\n"
+"Un producto almacenable es un producto para el que gestiona el stock. La aplicación \"Inventario\" debe instalarse.\n"
 "Por el contrario, un producto consumible es un producto para el que no se gestiona el stock.\n"
 "Un servicio es un producto no material que usted proporciona.\n"
-"Un contenido digital es un producto no material que vende en línea. Los archivos adjuntos a los productos son los que se venden en el comercio electrónico, tales como libros electrónicos, música, fotos, ... El módulo \"Producto Digital\" debe instalado."
+"Un contenido digital es un producto no material que vende en línea. Los archivos adjuntos a los productos son los que se venden en el comercio electrónico, tales como libros electrónicos, música, fotos, ... El módulo \"Producto Digital\" tiene que ser instalado."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_property_account_payable_id
@@ -154,11 +127,6 @@ msgid "Account that will be set on invoice tax lines for invoices. Leave empty t
 msgstr "Cuenta destinada a facturas. Dejar vacío para utilizar la cuenta de gastos."
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_account_tax_cash_basis_base_account_id
-msgid "Account that will be set on lines created in cash basis journal entry and used to keep track of the tax base amount."
-msgstr "Account that will be set on lines created in cash basis journal entry and used to keep track of the tax base amount."
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_account_tax_cash_basis_account
 msgid "Account used as counterpart for the journal entry, for taxes eligible based on payments."
 msgstr "Cuenta utilizada como contraparte para el asiento diario, para impuestos aplicables basados en pagos."
@@ -166,7 +134,6 @@ msgstr "Cuenta utilizada como contraparte para el asiento diario, para impuestos
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_message_needaction
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_message_needaction
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_message_needaction
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_message_needaction
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_message_needaction
 msgid "Action Needed"
@@ -176,7 +143,6 @@ msgstr "Acción requerida"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_active
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_active
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_active
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_active
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_active
 msgid "Active"
 msgstr "Activo"
@@ -184,7 +150,6 @@ msgstr "Activo"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_activity_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_activity_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_activity_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_activity_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_activity_ids
 msgid "Activities"
@@ -207,15 +172,13 @@ msgid "All quantities delivered"
 msgstr "All quantities delivered"
 
 #. module: connector_woocommerce
-#: code:addons/connector_woocommerce/models/sale_order/importer.py:124
+#: code:addons/connector_woocommerce/models/sale_order/importer.py:123
 #, python-format
 msgid "Already imported"
 msgstr "Already imported"
 
 #. module: connector_woocommerce
-#: code:addons/connector_woocommerce/components/importer.py:200
-#: code:addons/connector_woocommerce/models/product_attributes/importer.py:104
-#: code:addons/connector_woocommerce/models/product_variant/importer.py:79
+#: code:addons/connector_woocommerce/components/importer.py:192
 #, python-format
 msgid "Already up-to-date."
 msgstr "Already up-to-date."
@@ -246,35 +209,7 @@ msgid "Analytic Tags"
 msgstr "Etiquetas Analíticas"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_asset_category_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_asset_category_id
-msgid "Asset Type"
-msgstr "Tipo de activo"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_odoo_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_value_attribute_id
-msgid "Attribute"
-msgstr "Atributo"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_value_price_extra
-msgid "Attribute Price Extra"
-msgstr "Precio extra del atributo"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_value_price_ids
-msgid "Attribute Prices"
-msgstr "Precios de atributo"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_value_odoo_id
-msgid "Attribute Value"
-msgstr "Attribute Value"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_attribute_value_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_product_attribute_value_ids
 msgid "Attributes"
 msgstr "Atributos"
 
@@ -282,32 +217,6 @@ msgstr "Atributos"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_workflow_process_id
 msgid "Automatic Workflow"
 msgstr "Flujo automático"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_available_in_pos
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_available_in_pos
-msgid "Available in Point of Sale"
-msgstr "Disponible en TPV"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_average_consumption_15
-msgid "Average Consumption (15 days)"
-msgstr "Consumo medio (15 días)"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_average_consumption_30
-msgid "Average Consumption (30 days)"
-msgstr "Consumo medio (30 días)"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_average_consumption_90
-msgid "Average Consumption (90 days)"
-msgstr "Consumo medio (90 días)"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_average_consumption
-msgid "Average Consumption (max 365 days)"
-msgstr "Consumo medio (máx 365 días)"
 
 #. module: connector_woocommerce
 #: model:ir.ui.view,arch_db:connector_woocommerce.view_wc_backend_form
@@ -320,16 +229,6 @@ msgstr "Backend"
 #: model:ir.ui.menu,name:connector_woocommerce.menu_wc_backend
 msgid "Backends"
 msgstr "Backends"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_balance_regular
-msgid "Balance"
-msgstr "Balance"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_balance_refund
-msgid "Balance Refund"
-msgstr "Cuota devoluciones"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_bank_account_count
@@ -346,32 +245,14 @@ msgstr "Bancos"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_barcode
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_barcode
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_barcode
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_barcode
 msgid "Barcode"
 msgstr "Código de barras"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_base_balance_regular
-msgid "Base Balance"
-msgstr "Base imponible"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_base_balance_refund
-msgid "Base Balance Refund"
-msgstr "Base devoluciones"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_cash_basis_base_account_id
-msgid "Base Tax Received Account"
-msgstr "Base Tax Received Account"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_list_price
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_list_price
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_lst_price
 msgid "Base price to compute the customer price. Sometimes called the catalog price."
-msgstr "Precio base para calcular el precio de los clientes. A veces llamado precio de catálogo."
+msgstr "Precio base para calcular el precio de los clientes. A veces llamado precio de catalogo."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_account_tax_tax_exigibility
@@ -394,20 +275,9 @@ msgid "Bounce"
 msgstr "Rebotes"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_product_brand_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_product_brand_id
-msgid "Brand"
-msgstr "Marca"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_campaign_id
-msgid "Campaign"
-msgstr "Campaña"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_qty_delivered_updateable
 msgid "Can Edit Delivered"
-msgstr "Puede editar entregado"
+msgstr "Puede Modificar Entregado"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_product_updatable
@@ -416,19 +286,16 @@ msgstr "Puede editar producto"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_purchase_ok
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_purchase_ok
 msgid "Can be Purchased"
 msgstr "Puede ser comprado"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_rental
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_rental
 msgid "Can be Rent"
 msgstr "Puede ser alquilado"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_sale_ok
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_sale_ok
 msgid "Can be Sold"
 msgstr "Puede ser vendido"
 
@@ -449,9 +316,8 @@ msgstr "Forma de envío"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_route_from_categ_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_route_from_categ_ids
 msgid "Category Routes"
-msgstr "Rutas de categoría"
+msgstr "Categoría Rutas"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_channel_ids
@@ -468,19 +334,7 @@ msgstr "Check Connection"
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_is_company
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_is_company
 msgid "Check if the contact is a company, otherwise it is a person"
-msgstr "Marque esta casilla si el contacto es una compañía. En caso contrario, es una persona."
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_to_weight
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_to_weight
-msgid "Check if the product should be weighted using the hardware scale integration"
-msgstr "Marque si el producto debe ser pesado usando la integración hardware de la balanza"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_available_in_pos
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_available_in_pos
-msgid "Check if you want this product to appear in the Point of Sale"
-msgstr "Marque si quiere que este producto aparezca en el Punto de Venta"
+msgstr "Marque esta casilla si el contacto es una compañía. En caso contrario, será una persona."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_customer
@@ -506,13 +360,7 @@ msgid "Check this if the price you use on the product and invoices includes this
 msgstr "Marque esta opción si el precio que utiliza en el producto y en las facturas incluye este impuesto."
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_attribute_create_variant
-msgid "Check this if you want to create multiple variants for this attribute."
-msgstr "Marque esta casilla si quiere crear múltiples variantes para este atributo."
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_no_stock_sync
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_no_stock_sync
 msgid "Check this to exclude the product from stock synchronizations."
 msgstr "Check this to exclude the product from stock synchronizations."
 
@@ -544,7 +392,6 @@ msgstr "Ciudad"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_color
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_color
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_color
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_color
 msgid "Color Index"
 msgstr "Índice de color"
@@ -554,11 +401,6 @@ msgstr "Índice de color"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_commercial_partner_id
 msgid "Commercial Entity"
 msgstr "Entidad comercial"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_commitment_date
-msgid "Commitment Date"
-msgstr "Fecha de compromiso"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_ref_company_ids
@@ -571,7 +413,6 @@ msgstr "Compañías que se refieren a la empresa"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_company_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_company_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_company_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_company_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_company_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_company_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_company_id
@@ -609,14 +450,13 @@ msgstr "Nombre completo"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_woo_qty
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_woo_qty
 msgid "Computed Quantity"
 msgstr "Computed Quantity"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_confirmation_date
 msgid "Confirmation Date"
-msgstr "Fecha de confirmación"
+msgstr "Fecha confirmación"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_wc_backend_consumer_secret
@@ -643,37 +483,23 @@ msgid "Contracts"
 msgstr "Contratos"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_purchase_method
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_purchase_method
-msgid "Control Policy"
-msgstr "Política de Control"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_standard_price
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_standard_price
 msgid "Cost"
-msgstr "Precio de coste"
+msgstr "Coste"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_cost_method
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_cost_method
 msgid "Cost Method"
-msgstr "Método de coste"
+msgstr "Cost Method"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_standard_price
 msgid "Cost used for stock valuation in standard price and as a first price to set in average/fifo. Also used as a base price for pricelists. Expressed in the default unit of measure of the product."
-msgstr "Precio de coste utilizado para la valoración de existencias en precio estándar y como primer precio para establecer en promedio/fifo. También se utiliza como precio base para las tarifas. Expresado en la unidad de medida predeterminada del producto."
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_standard_price
-msgid "Cost used for stock valuation in standard price and as a first price to set in average/fifo. Also used as a base price for pricelists. Expressed in the default unit of measure of the product. "
-msgstr "Precio de coste utilizado para la valoración de existencias en precio estándar y como primer precio para establecer en promedio/fifo. También se utiliza como precio base para las tarifas. Expresado en la unidad de medida predeterminada del producto."
+msgstr "Costo utilizado para la valuación de acciones en precio estándar y como primer precio para establecer en promedio / fifo. También se utiliza como precio base para las listas de precios. Expresado en la unidad de medida predeterminada del producto."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_property_cost_method
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_property_cost_method
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_property_cost_method
 msgid "Costing Method"
 msgstr "Método de coste"
 
@@ -698,19 +524,11 @@ msgid "Country"
 msgstr "País"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_create_variant
-msgid "Create Variant"
-msgstr "Crear variante"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_wc_backend_create_uid
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_create_uid
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_create_uid
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_create_uid
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_value_create_uid
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_create_uid
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_create_uid
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_create_uid
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_create_uid
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_create_uid
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_create_uid
@@ -722,11 +540,8 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_wc_backend_create_date
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_create_date
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_create_date
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_create_date
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_value_create_date
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_create_date
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_create_date
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_create_date
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_create_date
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_create_date
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_create_date
@@ -738,12 +553,11 @@ msgstr "Creado en"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_credit_limit
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_credit_limit
 msgid "Credit Limit"
-msgstr "Crédito límite"
+msgstr "Crédito concedido"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_currency_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_currency_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_currency_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_currency_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_currency_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_currency_id
@@ -760,9 +574,9 @@ msgid ""
 "Otherwise, this includes goods stored in any Stock Location with 'internal' type."
 msgstr ""
 "Cantidad actual de los productos.\n"
-"En un contexto de una sola ubicación de Stock, esto incluye los bienes almacenados en esta ubicación, o cualquiera de sus hijas.\n"
-"En un contexto de un solo almacén, esto incluye los bienes almacenados en la ubicación de Stock de ese almacén, o cualquiera de sus hijas.\n"
-"En cualquier otro caso, esto incluye los bienes almacenados en cualquier ubicación de Stock de tipo 'Interna'."
+"En un contexto de una sola ubicación de existencias, esto incluye los bienes almacenados en esta ubicación, o cualquiera de sus hijas.\n"
+"En un contexto de un solo almacén, esto incluye los bienes almacenados en la ubicación de existencias de ese almacén, o cualquiera de sus hijas.\n"
+"En cualquier otro caso, esto incluye los bienes almacenados en cualquier ubicación de existencias de tipo 'Interna'."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_order_partner_id
@@ -772,7 +586,6 @@ msgstr "Cliente"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_sale_delay
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_sale_delay
 msgid "Customer Lead Time"
 msgstr "Plazo de entrega del cliente"
 
@@ -797,7 +610,7 @@ msgstr "Plazo de pago de cliente"
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_portal_url
 msgid "Customer Portal URL"
-msgstr "URL del portal de cliente"
+msgstr "Customer Portal URL"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_partner_ref
@@ -807,13 +620,12 @@ msgstr "Ref. Cliente"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_client_order_ref
 msgid "Customer Reference"
-msgstr "Referencia de cliente"
+msgstr "Referencia cliente"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_taxes_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_taxes_id
 msgid "Customer Taxes"
-msgstr "Impuestos de cliente"
+msgstr "Impuestos cliente"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_date
@@ -822,34 +634,12 @@ msgid "Date"
 msgstr "Fecha"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_requested_date
-msgid ""
-"Date by which the customer has requested the items to be delivered.\n"
-"When this Order gets confirmed, the Delivery Order's expected date will be computed based on this date and the Company's Security Delay.\n"
-"Leave this field empty if you want the Delivery Order to be processed as soon as possible. In that case the expected date will be computed using the default method: based on the Product Lead Times and the Company's Security Delay."
-msgstr ""
-"Fecha en la que el cliente ha solicitado el envío de los productos.\n"
-"Cuando un pedido se confirma, la fecha estimada del envío se calculará en base a los días de seguridad configurados en la compañía.\n"
-"Deje este campo vacío si quiere que se procese el envío lo antes posible. En ese caso, la fecha estimada se calculará utilizando el método por defecto, basado en el tiempo de entrega del producto y los días de seguridad configurados en la compañía."
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_commitment_date
-msgid "Date by which the products are sure to be delivered. This is a date that you can promise to the customer, based on the Product Lead Times."
-msgstr "Fecha en la que se asegura que los productos estarán enviados. Esta es la fecha de compromiso con el cliente, basada en el tiempo de entrega."
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_message_last_post
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_message_last_post
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_message_last_post
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_message_last_post
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_message_last_post
 msgid "Date of the last message posted on the record."
 msgstr "Fecha del último mensaje publicado en el registro."
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_effective_date
-msgid "Date on which the first Delivery Order was created."
-msgstr "Fecha en la que se ha creado el primer envío."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_confirmation_date
@@ -859,25 +649,17 @@ msgstr "Fecha en que se confirma el pedido de venta."
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_wc_backend_default_lang_id
 msgid "Default Language"
-msgstr "Idioma predeterminado"
+msgstr "Idioma por defecto"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_uom_id
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_uom_id
 msgid "Default Unit of Measure used for all stock operation."
 msgstr "Unidad de medida por defecto utilizada para todas las operaciones de stock."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_uom_po_id
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_uom_po_id
 msgid "Default Unit of Measure used for purchase orders. It must be in the same category than the default unit of measure."
-msgstr "Unidad de medida predeterminada utilizada para los pedidos de compra. Debe estar en la misma categoría que la unidad de medida predeterminada."
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_deferred_revenue_category_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_deferred_revenue_category_id
-msgid "Deferred Revenue Type"
-msgstr "Tipo de ingreso diferido"
+msgstr "Unidad de medida por defecto utilizada para los pedidos de compra. Debe estar en la misma categoría que la unidad de medida por defecto."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_trust
@@ -898,7 +680,7 @@ msgstr "Dirección de entrega"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_customer_lead
 msgid "Delivery Lead Time"
-msgstr "Tiempo inicial de entrega"
+msgstr "Tiempo inicial entrega"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_delivery_message
@@ -910,7 +692,7 @@ msgstr "Mensaje de entrega"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_property_delivery_carrier_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_carrier_id
 msgid "Delivery Method"
-msgstr "Método de envío"
+msgstr "Forma de envío"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_delivery_count
@@ -929,14 +711,12 @@ msgstr "Dirección de envío para el pedido de ventas actual."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_route_ids
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_route_ids
 msgid "Depending on the modules installed, this will allow you to define the route of the product: whether it will be bought, manufactured, MTO/MTS,..."
-msgstr "Dependiendo de los módulos instalados, este permite definir la ruta del producto: si será comprado, facturado, bajo pedido o desde stock..."
+msgstr "Dependiendo de los módulos instalados, este permite definir la ruta del producto: si será comprado, facturado, bajo pedido o desde existencias..."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_description
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_description
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_description
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_name
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_status_desc
 msgid "Description"
@@ -944,28 +724,18 @@ msgstr "Descripción"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_description_pickingout
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_description_pickingout
 msgid "Description on Delivery Orders"
-msgstr "Descripción en los pedidos de Entrega"
+msgstr "Descripción para albaranes de salida"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_description_picking
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_description_picking
 msgid "Description on Picking"
-msgstr "Descripción en Albarán"
+msgstr "Descripción de Picking"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_description_pickingin
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_description_pickingin
 msgid "Description on Receptions"
-msgstr "Descripción en Recepciones"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_attribute_sequence
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_attribute_value_sequence
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_sequence
-msgid "Determine the display order"
-msgstr "Determina el orden de visualización"
+msgstr "Descripción para albaranes de entrada"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_account_tax_type_tax_use
@@ -982,11 +752,8 @@ msgstr "Descuento (%)"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_display_name
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_display_name
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_binding_display_name
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_display_name
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_value_display_name
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_display_name
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_display_name
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_display_name
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_display_name
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_display_name
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_display_name
@@ -1000,21 +767,6 @@ msgid "Down payments are made when creating invoices from a sales order. They ar
 msgstr "Los anticipos se realizan al crear facturas a partir de un pedido de cliente. No se copian al duplicar un pedido de cliente."
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_draft_incoming_qty
-msgid "Draft Incoming"
-msgstr "Entradas en borrados"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_draft_outgoing_qty
-msgid "Draft Outgoing"
-msgstr "Salidas en borrador"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_effective_date
-msgid "Effective Date"
-msgstr "Fecha efectiva"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_partner_share
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_partner_share
 msgid "Either customer (no user), either shared user. Indicated the current partner is a customer without access or with a limited access created for sharing data."
@@ -1024,7 +776,7 @@ msgstr "Ya sea cliente (no usuario), como usuario compartido. Indica si el socio
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_email
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_email
 msgid "Email"
-msgstr "Email"
+msgstr "Correo electrónico"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_employee
@@ -1033,7 +785,7 @@ msgid "Employee"
 msgstr "Empleado"
 
 #. module: connector_woocommerce
-#: code:addons/connector_woocommerce/models/woocommerce_backend/common.py:171
+#: code:addons/connector_woocommerce/models/woocommerce_backend/common.py:174
 #, python-format
 msgid "Enter Valid url"
 msgstr "Enter Valid url"
@@ -1046,12 +798,11 @@ msgstr "Precio estimado de entrega"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_exception_ids
 msgid "Exceptions"
-msgstr "Excepciones"
+msgstr "Exceptions"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_property_account_expense_categ_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_property_account_expense_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_property_account_expense_id
 msgid "Expense Account"
 msgstr "Cuenta de gasto"
 
@@ -1061,21 +812,9 @@ msgid "Expiration Date"
 msgstr "Fecha de caducidad"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_categ_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_categ_ids
-msgid "Extra categories"
-msgstr "Extra categories"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_carrier_id
 msgid "Fill this field if you plan to invoice the shipping based on picking."
 msgstr "Rellene este campo si va a facturar el envío basado en la recolección."
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_valid_mandate_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_valid_mandate_id
-msgid "First Valid Mandate"
-msgstr "Primer mandato válido"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_property_account_position_id
@@ -1087,7 +826,6 @@ msgstr "Posición fiscal"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_message_follower_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_message_follower_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_message_follower_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_message_follower_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_message_follower_ids
 msgid "Followers"
@@ -1096,7 +834,6 @@ msgstr "Seguidores"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_message_channel_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_message_channel_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_message_channel_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_message_channel_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_message_channel_ids
 msgid "Followers (Channels)"
@@ -1105,7 +842,6 @@ msgstr "Seguidores (Canales)"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_message_partner_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_message_partner_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_message_partner_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_message_partner_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_message_partner_ids
 msgid "Followers (Partners)"
@@ -1130,41 +866,34 @@ msgid ""
 "Otherwise, this includes goods stored in any Stock Location with 'internal' type."
 msgstr ""
 "Cantidad prevista (calculada como cantidad a mano - saliente + entrante)\n"
-"En un contexto de una sola ubicación de stock, esto incluye los bienes almacenados en esta ubicación, o cualquiera de sus hijas.\n"
-"En un contexto de un solo almacén, esto incluye los bienes almacenados en la ubicación de stock de ese almacén, o cualquiera de sus hijas.\n"
-"En cualquier otro caso, esto incluye los bienes almacenados en cualquier ubicación de stock de tipo 'Interna'."
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_virtual_available
-msgid "Forecasted Quantity"
-msgstr "Cantidad pronosticada"
+"En un contexto de una sola ubicación de existencias, esto incluye los bienes almacenados en esta ubicación, o cualquiera de sus hijas.\n"
+"En un contexto de un solo almacén, esto incluye los bienes almacenados en la ubicación de existencias de ese almacén, o cualquiera de sus hijas.\n"
+"En cualquier otro caso, esto incluye los bienes almacenados en cualquier ubicación de existencias de tipo 'Interna'."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_email_formatted
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_email_formatted
 msgid "Format email address \"Name <email@domain>\""
-msgstr "Dirección de email con formato \"Nombre <email@domain>\""
+msgstr "Dirección email formatado \"Nombre <email@domain>\""
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_email_formatted
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_email_formatted
 msgid "Formatted Email"
-msgstr "Email formateado"
+msgstr "Email formatado"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_packaging_ids
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_packaging_ids
 msgid "Gives the different ways to package the same product."
 msgstr "Da las diferentes formas de empaquetar el mismo producto."
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_sequence
+#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_sequence
 msgid "Gives the sequence order when displaying a product list"
 msgstr "Proporciona el orden de secuencia al mostrar una lista de productos"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_hs_code
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_hs_code
 msgid "HS Code"
 msgstr "Código HS"
 
@@ -1178,11 +907,6 @@ msgstr "Has Checkpoint"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_has_unreconciled_entries
 msgid "Has Unreconciled Entries"
 msgstr "Tiene entradas no conciliadas"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_has_moves
-msgid "Has balance in period"
-msgstr "Tiene saldo en periodo"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_need_cancel
@@ -1199,11 +923,8 @@ msgstr "Ocultar opción de base de efectivo"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_binding_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_value_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_id
@@ -1215,11 +936,8 @@ msgstr "ID (identificación)"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_external_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_external_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_binding_external_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_external_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_value_external_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_external_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_external_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_external_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_external_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_external_id
 msgid "ID on Woo"
@@ -1243,7 +961,6 @@ msgstr ""
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_message_unread
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_message_unread
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_message_unread
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_message_unread
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_message_unread
 msgid "If checked new messages require your attention."
@@ -1252,17 +969,16 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_message_needaction
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_message_needaction
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_message_needaction
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_message_needaction
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Si está marcado hay nuevos mensajes que requieren su atención."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_opt_out
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_opt_out
 msgid "If opt-out is checked, this contact has refused to receive emails for mass mailing and marketing campaign. Filter 'Available for Mass Mailing' allows users to filter the partners when performing mass mailing."
-msgstr "Si 'No acepta mensajes' está marcado, este contacto se ha rehusado a recibir correos electrónicos de envíos masivos y campañas de marketing. El filtro 'Disponible para envíos masivos' permite a los usuarios filtrar a las empresas cuando se realicen envíos masivos."
+msgstr "Si 'No acepta mensajes' está marcado, este contacto ha rehusado recibir correos electrónicos de envíos masivos y campañas de marketing. El filtro 'Disponible para envíos masivos' permite a los usuarios filtrar a las empresas cuando se realicen envíos masivos."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_account_tax_include_base_amount
@@ -1278,7 +994,7 @@ msgstr "Si está establecido, el importe calculado por este impuesto se asignar�
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_team_id
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_team_id
 msgid "If set, this sales channel will be used for sales and assignations related to this partner"
-msgstr "Si así se configura, este canal de ventas se utilizará para ventas y asignaciones relacionadas con esta empresa"
+msgstr "If set, this sales channel will be used for sales and assignations related to this partner"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_lang
@@ -1288,18 +1004,16 @@ msgstr "Si el idioma seleccionado está cargado en el sistema, todos los documen
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_active
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_active
 msgid "If unchecked, it will allow you to hide the product without removing it."
 msgstr "Si no está marcado, permitirá ocultar el producto sin eliminarlo."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_ignore_exception
 msgid "Ignore Exceptions"
-msgstr "Ignorar excepciones"
+msgstr "Ignore Exceptions"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_image
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_image
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_image
 msgid "Image"
 msgstr "Imagen"
@@ -1313,12 +1027,12 @@ msgstr "Imagen de la variante del producto (Imagen grande de la plantilla del pr
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_image_medium
 msgid "Image of the product variant (Medium-sized image of product template if false)."
-msgstr "Imagen de la variante del producto (Imagen mediana de la plantilla del producto en caso de ser falso)."
+msgstr "Imagen de la variante del producto (Imagen mediana de la plantilla del producto en caso de que esté vacía)."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_image_small
 msgid "Image of the product variant (Small-sized image of product template if false)."
-msgstr "Imagen de la variante del producto (Imagen pequeña de la plantilla del producto en caso de ser falso)."
+msgstr "Imagen de la variante del producto (Imagen pequeña de la plantilla del producto en caso de que esté vacía)."
 
 #. module: connector_woocommerce
 #: model:ir.ui.view,arch_db:connector_woocommerce.view_wc_backend_form
@@ -1327,13 +1041,8 @@ msgstr "Importar Clientes"
 
 #. module: connector_woocommerce
 #: model:ir.ui.view,arch_db:connector_woocommerce.view_wc_backend_form
-msgid "Import Product since"
-msgstr "Importar productos desde "
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_wc_backend_import_products_since
-msgid "Import Products since"
-msgstr "Importar productos desde "
+msgid "Import Product"
+msgstr "Importar productos"
 
 #. module: connector_woocommerce
 #: model:ir.ui.view,arch_db:connector_woocommerce.view_wc_backend_form
@@ -1353,12 +1062,7 @@ msgstr "Importar en Segundo plano"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_wc_backend_import_orders_from_date
 msgid "Import orders from date"
-msgstr "Importar pedidos desde "
-
-#. module: connector_woocommerce
-#: model:ir.ui.view,arch_db:connector_woocommerce.view_wc_backend_form
-msgid "Import product attributes"
-msgstr "Import product attributes"
+msgstr "Import orders from date"
 
 #. module: connector_woocommerce
 #: model:ir.ui.view,arch_db:connector_woocommerce.view_wc_backend_form
@@ -1378,13 +1082,11 @@ msgstr "Incluir en el precio"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_property_account_income_categ_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_property_account_income_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_property_account_income_id
 msgid "Income Account"
 msgstr "Cuenta de ingresos"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_incoming_qty
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_incoming_qty
 msgid "Incoming"
 msgstr "Entrada"
 
@@ -1397,19 +1099,22 @@ msgstr "Incoterms"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_industry_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_industry_id
 msgid "Industry"
-msgstr "Sector"
+msgstr "Industry"
+
+#. module: connector_woocommerce
+#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_categ_id
+msgid "Internal Category"
+msgstr "Categoría interna"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_ref
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_default_code
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_default_code
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_ref
 msgid "Internal Reference"
 msgstr "Referencia interna"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_barcode
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_barcode
 msgid "International Article Number used for product identification."
 msgstr "Número de artículo internacional usado para la identificación de producto."
 
@@ -1420,14 +1125,17 @@ msgstr "Los términos de comercio internacional son una serie de condiciones com
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_property_stock_inventory
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_property_stock_inventory
 msgid "Inventory Location"
 msgstr "Ubicación de inventario"
 
 #. module: connector_woocommerce
+#: model:ir.ui.view,arch_db:connector_woocommerce.view_woo_product_form
+msgid "Inventory Options"
+msgstr "Inventory Options"
+
+#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_property_valuation
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_property_valuation
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_property_valuation
 msgid "Inventory Valuation"
 msgstr "Valoración del inventario"
 
@@ -1445,7 +1153,7 @@ msgstr "Dirección de Factura"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_invoice_lines
 msgid "Invoice Lines"
-msgstr "Líneas de la factura"
+msgstr "Líneas de factura"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_invoice_shipping_on_delivery
@@ -1477,23 +1185,16 @@ msgstr "Facturas"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_invoice_policy
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_invoice_policy
 msgid "Invoicing Policy"
 msgstr "Política de Facturación"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_message_is_follower
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_message_is_follower
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_message_is_follower
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_message_is_follower
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_message_is_follower
 msgid "Is Follower"
 msgstr "Es un seguidor"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_is_product_variant
-msgid "Is Product Variant"
-msgstr "Is Product Variant"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_is_company
@@ -1524,14 +1225,9 @@ msgid "Is a down payment"
 msgstr "Es un pago anticipado"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_is_product_variant
-msgid "Is a product variant"
-msgstr "Es una variante de producto"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_is_expired
 msgid "Is expired"
-msgstr "Está expirado"
+msgstr "Esta expirado"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_function
@@ -1547,7 +1243,6 @@ msgstr "Apuntes contables"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_property_account_income_id
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_property_account_income_id
 msgid "Keep this field empty to use the default value from the product category."
 msgstr "Mantenga este campo vacío para usar el valor predeterminado de la categoría del producto."
 
@@ -1565,7 +1260,6 @@ msgstr "Idioma"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_message_last_post
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_message_last_post
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_message_last_post
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_message_last_post
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_message_last_post
 msgid "Last Message Date"
@@ -1576,11 +1270,8 @@ msgstr "Fecha del último mensaje"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax___last_update
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address___last_update
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_binding___last_update
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute___last_update
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_value___last_update
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category___last_update
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product___last_update
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template___last_update
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner___last_update
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order___last_update
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line___last_update
@@ -1592,11 +1283,8 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_wc_backend_write_uid
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_write_uid
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_write_uid
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_value_write_uid
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_write_uid
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_write_uid
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_write_uid
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_write_uid
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_write_uid
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_write_uid
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_status_write_uid
@@ -1608,11 +1296,8 @@ msgstr "Última actualización de"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_wc_backend_write_date
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_write_date
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_write_date
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_value_write_date
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_write_date
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_write_date
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_write_date
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_write_date
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_write_date
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_write_date
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_status_write_date
@@ -1622,21 +1307,14 @@ msgstr "Última actualización en"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_woo_qty
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_woo_qty
 msgid "Last computed quantity to send to WooCommerce"
 msgstr "Last computed quantity to send to WooCommerce"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_calendar_last_notif_ack
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_calendar_last_notif_ack
-msgid "Last notification marked as read from base Calendar"
-msgstr "Última notificación marcada como leída desde la base del calendario"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_last_time_entries_checked
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_last_time_entries_checked
 msgid "Last time the invoices & payments matching was performed for this partner. It is set either if there's not at least an unreconciled debit and an unreconciled credit or if you click the \"Done\" button."
-msgstr "Última vez que se conciliaron facturas y pagos de este asociado. Se configura incluso si no hay ningún débito o crédito por conciliar, o si pulsa el botón \"Hecho\"."
+msgstr "Última vez que se conciliaros facturas y pagos de este asociado. Se configura incluso si no hay ningún débito o crédito por conciliar, o si pulsa el botón \"Hecho\"."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_last_time_entries_checked
@@ -1647,7 +1325,7 @@ msgstr "Fecha de la última conciliación de facturas y pagos"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_layout_category_sequence
 msgid "Layout Sequence"
-msgstr "Secuencia de diseño"
+msgstr "Secuencia plantilla"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_parent_left
@@ -1655,15 +1333,14 @@ msgid "Left Parent"
 msgstr "Padre izquierdo"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_attribute_line_ids
-msgid "Lines"
-msgstr "Líneas"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_location_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_location_id
 msgid "Location"
 msgstr "Ubicación"
+
+#. module: connector_woocommerce
+#: model:ir.ui.view,arch_db:connector_woocommerce.view_woo_product_tree
+msgid "Magento Product"
+msgstr "Magento Product"
 
 #. module: connector_woocommerce
 #: model:ir.ui.view,arch_db:connector_woocommerce.view_wc_backend_form
@@ -1673,17 +1350,16 @@ msgstr "Configuración principal"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_main_exception_id
 msgid "Main Exception"
-msgstr "Excepción principal"
+msgstr "Main Exception"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_property_valuation
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_property_valuation
 msgid ""
 "Manual: The accounting entries to value the inventory are not posted automatically.\n"
 "        Automated: An accounting entry is automatically created to value the inventory when a product enters or leaves the company."
 msgstr ""
-"Manual: Los registros contables de valoración del inventario no se publican automáticamente.\n"
-"        Automatizado: Se crea automáticamente un registro contable para evaluar el inventario cuando un producto entra o sale de la empresa."
+"Manual: The accounting entries to value the inventory are not posted automatically.\n"
+"        Automated: An accounting entry is automatically created to value the inventory when a product enters or leaves the company."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_category_property_valuation
@@ -1692,13 +1368,12 @@ msgid ""
 "        Automated: An accounting entry is automatically created to value the inventory when a product enters or leaves the company.\n"
 "        "
 msgstr ""
-"Manual: Los registros contables de valoración del inventario no se publican automáticamente.\n"
-"        Automatizado: Se crea automáticamente un registro contable para evaluar el inventario cuando un producto entra o sale de la empresa.\n"
+"Manual: The accounting entries to value the inventory are not posted automatically.\n"
+"        Automated: An accounting entry is automatically created to value the inventory when a product enters or leaves the company.\n"
 "        "
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_service_type
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_service_type
 msgid ""
 "Manually set quantities on order: Invoice based on the manually entered quantity, without creating an analytic account.\n"
 "Timesheets on contract: Invoice based on the tracked hours on the related timesheet.\n"
@@ -1714,76 +1389,23 @@ msgid "Manually set the expiration date of your quotation (offer), or it will se
 msgstr "Indique manualmente la fecha de caducidad de su presupuesto (oferta), o se cargará la fecha automáticamente en función de la plantilla."
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_manufacturer_pref
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_manufacturer_pref
-msgid "Manuf. Product Code"
-msgstr "Código de producto del fabricante"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_manufacturer_pname
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_manufacturer_pname
-msgid "Manuf. Product Name"
-msgstr "Nombre de producto del fabricante"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_manufacturer_purl
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_manufacturer_purl
-msgid "Manuf. Product URL"
-msgstr "URL de producto del fabricante"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_manufacturer
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_manufacturer
-msgid "Manufacturer"
-msgstr "Fabricante"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_medium_id
-msgid "Medium"
-msgstr "Medio"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_image_medium
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_image_medium
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_image_medium
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_image_medium
 msgid "Medium-sized image"
 msgstr "Imagen de tamaño mediano"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_image_medium
-msgid "Medium-sized image of the product. It is automatically resized as a 128x128px image, with aspect ratio preserved, only when the image exceeds one of those sizes. Use this field in form views or some kanban views."
-msgstr "Imagen mediana del producto. Se redimensionará automáticamente a 128x128ppx, preservando el ratio de aspecto, sólo cuando la imagen exceda uno de esos tamaños. Este campo se usa en las vistas de formulario y en algunas vistas kanban."
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_image_medium
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_image_medium
 msgid "Medium-sized image of this contact. It is automatically resized as a 128x128px image, with aspect ratio preserved. Use this field in form views or some kanban views."
-msgstr "Imagen mediana de este contacto. Se redimensiona automáticamente a 128x128px, con el ratio de aspecto preservado. Se usa este campo en las vistas formulario y en algunas vistas kanban."
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_meeting_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_meeting_ids
-msgid "Meetings"
-msgstr "Reuniones"
+msgstr "Imagen mediana de este contacto. Se redimensiona automáticamente a 128x128 px, con el ratio de aspecto preservado. Se usa este campo en las vistas formulario y en algunas vistas kanban."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_invoice_warn_msg
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_invoice_warn_msg
 msgid "Message for Invoice"
 msgstr "Mensaje para factura"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_purchase_warn_msg
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_purchase_warn_msg
-msgid "Message for Purchase Order"
-msgstr "Mensaje para el pedido de compra"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_purchase_line_warn_msg
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_purchase_line_warn_msg
-msgid "Message for Purchase Order Line"
-msgstr "Mensaje para la línea del pedido de compra"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_sale_warn_msg
@@ -1793,7 +1415,6 @@ msgstr "Mensaje para el pedido de venta"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_sale_line_warn_msg
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_sale_line_warn_msg
 msgid "Message for Sales Order Line"
 msgstr "Mensaje para la línea de pedido de venta"
 
@@ -1801,12 +1422,11 @@ msgstr "Mensaje para la línea de pedido de venta"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_picking_warn_msg
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_picking_warn_msg
 msgid "Message for Stock Picking"
-msgstr "Mensaje para recolección de stock"
+msgstr "Mensaje para albarán de stock"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_message_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_message_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_message_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_message_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_message_ids
 msgid "Messages"
@@ -1824,17 +1444,10 @@ msgid "Mobile"
 msgstr "Móvil"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_factor
-msgid "Multiplier factor sequence"
-msgstr "Multiplier factor sequence"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_wc_backend_name
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_name
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_name
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_name
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_name
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_name
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_name
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_status_name
 #: model:ir.ui.view,arch_db:connector_woocommerce.view_wc_backend_form
@@ -1849,7 +1462,6 @@ msgstr "Need to be canceled"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_activity_date_deadline
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_activity_date_deadline
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_activity_date_deadline
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_activity_date_deadline
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_activity_date_deadline
 msgid "Next Activity Deadline"
@@ -1858,7 +1470,6 @@ msgstr "Siguiente plazo de actividad"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_activity_summary
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_activity_summary
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_activity_summary
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_activity_summary
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_activity_summary
 msgid "Next Activity Summary"
@@ -1867,7 +1478,6 @@ msgstr "Resumen de la siguiente actividad"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_activity_type_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_activity_type_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_activity_type_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_activity_type_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_activity_type_id
 msgid "Next Activity Type"
@@ -1875,7 +1485,6 @@ msgstr "Siguiente tipo de actividad"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_no_stock_sync
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_no_stock_sync
 msgid "No Stock Synchronization"
 msgstr "No Stock Synchronization"
 
@@ -1890,22 +1499,15 @@ msgstr "Notas"
 #: code:addons/connector_woocommerce/components/exporter.py:370
 #, python-format
 msgid "Nothing to export."
-msgstr "Nada que exportar"
+msgstr "Nothing to export."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_message_needaction_counter
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_message_needaction_counter
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_message_needaction_counter
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_message_needaction_counter
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_message_needaction_counter
 msgid "Number of Actions"
 msgstr "Número de acciones"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_mandate_count
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_mandate_count
-msgid "Number of Mandates"
-msgstr "Número de mandatos"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_line_customer_lead
@@ -1913,14 +1515,8 @@ msgid "Number of days between the order confirmation and the shipping of the pro
 msgstr "Número de días entre la confirmación del pedido y la entrega de los productos al cliente"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_nb_days
-msgid "Number of days for the calculation"
-msgstr "Número de días para el cálculo"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_message_needaction_counter
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_message_needaction_counter
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_message_needaction_counter
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_message_needaction_counter
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_message_needaction_counter
 msgid "Number of messages which requires an action"
@@ -1929,34 +1525,10 @@ msgstr "Número de mensajes que requieren una acción"
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_message_unread_counter
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_message_unread_counter
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_message_unread_counter
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_message_unread_counter
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_message_unread_counter
 msgid "Number of unread messages"
 msgstr "Número de mensajes no leidos"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_purchase_method
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_purchase_method
-msgid ""
-"On ordered quantities: control bills based on ordered quantities.\n"
-"On received quantities: control bills based on received quantity."
-msgstr ""
-"Sobre líneas de pedido: control de facturas basado en las lineas de los pedidos de compra.\n"
-"Sobre recepciones: control de facturas basado en las recepciones"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_opportunity_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_opportunity_ids
-msgid "Opportunities"
-msgstr "Oportunidades"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_opportunity_count
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_opportunity_count
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_opportunity_id
-msgid "Opportunity"
-msgstr "Oportunidad"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_opt_out
@@ -1992,7 +1564,6 @@ msgstr "Estado del pedido"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_invoice_policy
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_invoice_policy
 msgid ""
 "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
 "Delivered Quantity: Invoiced based on the quantity the vendor delivered (time or deliveries)."
@@ -2002,7 +1573,6 @@ msgstr ""
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_outgoing_qty
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_outgoing_qty
 msgid "Outgoing"
 msgstr "Saliente"
 
@@ -2072,39 +1642,14 @@ msgid "Pickings"
 msgstr "Albaranes"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_pos_categ_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_pos_categ_id
-msgid "Point of Sale Category"
-msgstr "Categoría del Punto de Venta"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_portal_url
 msgid "Portal Access URL"
-msgstr "URL de acceso al portal"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_pos_order_count
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_pos_order_count
-msgid "Pos Order Count"
-msgstr "Recuento de los pedidos del TPV"
+msgstr "Portal Access URL"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_price
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_price
 msgid "Price"
 msgstr "Precio"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_property_account_creditor_price_difference_categ
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_property_account_creditor_price_difference
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_property_account_creditor_price_difference
-msgid "Price Difference Account"
-msgstr "Cuenta de diferencia de precio"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_attribute_value_price_extra
-msgid "Price Extra: Extra price for the variant with this attribute value on sale price. eg. 200 price extra, 1000 + 200 = 1200."
-msgstr "Precio extra: Precio extra para la variante con este valor de atributo en el precio de venta. Por ejemplo, precio extra 200. Precio final variante: 1000 + 200 = 1200."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_price_reduce
@@ -2123,10 +1668,9 @@ msgstr "Impuestos incluidos en el precio reducido"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_pricelist_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_pricelist_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_pricelist_id
 msgid "Pricelist"
-msgstr "Lista de precios"
+msgstr "Tarifa"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_pricelist_item_ids
@@ -2135,9 +1679,8 @@ msgstr "Item de Lista de precios"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_item_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_item_ids
 msgid "Pricelist Items"
-msgstr "Items de Lista de precios"
+msgstr "Elementos de tarifa"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_pricelist_id
@@ -2145,19 +1688,13 @@ msgid "Pricelist for current sales order."
 msgstr "Tarifa para el pedido de venta actual."
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_categ_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_categ_id
-msgid "Pricing/Primary Category"
-msgstr "Pricing/Primary Category"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_procurement_group_id
 msgid "Procurement Group"
 msgstr "Grupo de abastecimiento"
 
 #. module: connector_woocommerce
+#: model:ir.model,name:connector_woocommerce.model_product_product
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_product_variant_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_product_variant_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_product_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_product_id
 msgid "Product"
@@ -2165,7 +1702,6 @@ msgstr "Producto"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_attribute_line_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_attribute_line_ids
 msgid "Product Attributes"
 msgstr "Atributos del producto"
 
@@ -2176,77 +1712,40 @@ msgstr "Imagen del producto"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_packaging_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_packaging_ids
 msgid "Product Packages"
 msgstr "Paquetes de productos"
 
 #. module: connector_woocommerce
-#: model:ir.model,name:connector_woocommerce.model_product_template
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_product_tmpl_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_product_tmpl_id_sale_order_variant_mgmt
 msgid "Product Template"
 msgstr "Plantilla de producto"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_type
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_type
 msgid "Product Type"
 msgstr "Tipo de producto"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_odoo_id
-msgid "Product Variant"
-msgstr "Variante de producto"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_property_stock_production
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_property_stock_production
 msgid "Production Location"
 msgstr "Ubicación de producción"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_product_variant_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_product_variant_ids
 msgid "Products"
 msgstr "Productos"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_lst_price
-msgid "Public Price"
-msgstr "Precio al público"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_description_purchase
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_description_purchase
 msgid "Purchase Description"
 msgstr "Descripción de compra"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_purchase_warn
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_purchase_warn
-msgid "Purchase Order"
-msgstr "Pedido de compra"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_purchase_line_warn
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_purchase_line_warn
-msgid "Purchase Order Line"
-msgstr "Línea de pedido de compra"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_purchase_target
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_purchase_target
-msgid "Purchase Target"
-msgstr "Objetivo de compra"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_uom_po_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_uom_po_id
 msgid "Purchase Unit of Measure"
-msgstr "Unidad de medida de compra"
+msgstr "Unidad de medida compra"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_qty_at_date
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_product_qty
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_product_uom_qty
 msgid "Quantity"
@@ -2254,7 +1753,6 @@ msgstr "Cantidad"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_qty_available
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_qty_available
 msgid "Quantity On Hand"
 msgstr "Cantidad a mano"
 
@@ -2269,7 +1767,7 @@ msgstr ""
 "Cantidad de productos entrantes planificados.\n"
 "En un contexto con una única ubicación de stock, esto incluye los bienes que llegan a esta ubicación o cualquiera de sus hijos.\n"
 "En un contexto con un solo Almacén, esto incluye los bienes que llegan a la Ubicación de stock de este Almacén, o cualquiera de sus hijos.\n"
-"De lo contrario, esto incluye bienes que llegan a cualquier Ubicación de Stock con tipo 'interno'."
+"De lo contrario, esto incluye bienes que llegan a cualquier Stock Stock con tipo 'interno'."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_outgoing_qty
@@ -2286,14 +1784,11 @@ msgstr ""
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_expense_policy
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_expense_policy
 msgid "Re-Invoice Expenses"
 msgstr "Gastos de Re-factura"
 
 #. module: connector_woocommerce
-#: code:addons/connector_woocommerce/components/importer.py:192
-#: code:addons/connector_woocommerce/models/product_attributes/importer.py:96
-#: code:addons/connector_woocommerce/models/product_variant/importer.py:72
+#: code:addons/connector_woocommerce/components/importer.py:184
 #, python-format
 msgid "Record does no longer exist in WooCommerce"
 msgstr "Record does no longer exist in WooCommerce"
@@ -2322,33 +1817,23 @@ msgstr "Empresa relacionada"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_reordering_max_qty
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_reordering_max_qty
 msgid "Reordering Max Qty"
 msgstr " Abasteciendo cant. max."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_reordering_min_qty
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_reordering_min_qty
 msgid "Reordering Min Qty"
 msgstr " Abasteciendo cant. min."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_nbr_reordering_rules
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_nbr_reordering_rules
 msgid "Reordering Rules"
 msgstr "Reglas de abastecimiento"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_requested_date
-msgid "Requested Date"
-msgstr "Fecha solicitada"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_activity_user_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_activity_user_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_responsible_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_activity_user_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_responsible_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_activity_user_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_activity_user_id
 msgid "Responsible"
@@ -2367,18 +1852,16 @@ msgstr "Ruta"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_route_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_route_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_route_ids
 msgid "Routes"
 msgstr "Rutas"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_rule_group
 msgid "Rule Group"
-msgstr "Grupo de reglas"
+msgstr "Rule Group"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_description_sale
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_description_sale
 msgid "Sale Description"
 msgstr "Descripción de venta"
 
@@ -2401,7 +1884,7 @@ msgstr "Precio de venta"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_property_product_pricelist
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_property_product_pricelist
 msgid "Sale Pricelist"
-msgstr "Lista de precios de venta"
+msgstr "Tarifa de venta"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_team_id
@@ -2416,18 +1899,16 @@ msgstr "Canal de ventas"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_sale_order_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_sale_warn
 msgid "Sales Order"
-msgstr "Pedido de ventas"
+msgstr "Pedido de venta"
 
 #. module: connector_woocommerce
 #: model:ir.model,name:connector_woocommerce.model_sale_order_line
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_sale_line_warn
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_sale_line_warn
 msgid "Sales Order Line"
-msgstr "Línea de pedido de ventas"
+msgstr "Línea de pedido de venta"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_list_price
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_list_price
 msgid "Sales Price"
 msgstr "Precio de venta"
 
@@ -2440,20 +1921,9 @@ msgid "Salesperson"
 msgstr "Comercial"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_season_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_season_id
-msgid "Season"
-msgstr "Temporada"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_layout_category_id
 msgid "Section"
 msgstr "Sección"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_sequence
-msgid "Secuence"
-msgstr "Secuence"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_access_token
@@ -2461,14 +1931,7 @@ msgid "Security Token"
 msgstr "Token de seguridad"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_product_brand_id
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_product_brand_id
-msgid "Select a brand for this product"
-msgstr "Seleccione una marca para este producto"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_categ_id
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_categ_id
 msgid "Select category for the current product"
 msgstr "Seleccione la categoría para el producto actual."
 
@@ -2487,15 +1950,10 @@ msgstr "Seleccione el modo de pago por defecto cuando esta empresa actúa como p
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_invoice_warn
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_picking_warn
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_address_purchase_warn
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_sale_warn
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_purchase_line_warn
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_sale_line_warn
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_purchase_line_warn
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_sale_line_warn
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_invoice_warn
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_picking_warn
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_purchase_warn
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_sale_warn
 msgid "Selecting the \"Warning\" option will notify user with the message, Selecting \"Blocking Message\" will throw an exception with the message and block the flow. The Message has to be written in the next field."
 msgstr "Si selecciona la opción \"Aviso\" se notificará a los usuarios con el mensaje, si selecciona \"Mensaje de bloqueo\" se lanzará una excepción con el mensaje y se bloqueará el flujo. El mensaje debe escribirse en el siguiente campo."
@@ -2504,13 +1962,11 @@ msgstr "Si selecciona la opción \"Aviso\" se notificará a los usuarios con el 
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_self
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_self
 msgid "Self"
-msgstr "Sí mismo"
+msgstr "Si mismo"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_sequence
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_sequence
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_value_sequence
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_sequence
+#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_sequence
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_sequence
 msgid "Sequence"
 msgstr "Secuencia"
@@ -2523,7 +1979,7 @@ msgstr "Establezca una estrategia de retirada específica que se usará independ
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_account_tax_active
 msgid "Set active to false to hide the tax without removing it."
-msgstr "Establezca a falso para ocultar el impuesto sin eliminarlo."
+msgstr "Establezca activo en falso para ocultar el impuesto sin eliminarlo."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_account_tax_tax_adjustment
@@ -2539,7 +1995,7 @@ msgstr "Compartir empresa"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_picking_policy
 msgid "Shipping Policy"
-msgstr "Política de entrega"
+msgstr "Política de envío"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_signup_expiration
@@ -2572,58 +2028,44 @@ msgid "Signup URL"
 msgstr "URL de ingreso"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_slug
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_slug
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_slug
+#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_slug
 msgid "Slug Name"
 msgstr "Slug Name"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_image_small
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_image_small
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_image_small
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_image_small
 msgid "Small-sized image"
 msgstr "Imagen de tamaño pequeño"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_image_small
-msgid "Small-sized image of the product. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
-msgstr "Imagen pequeña del producto. Se redimensiona automáticamente a 64x64px, preservando el ratio de aspecto. Use este campo siempre que se requiera una imagen pequeña."
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_image_small
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_image_small
 msgid "Small-sized image of this contact. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
-msgstr "Imagen de tamaño pequeño de este contacto. Se redimensiona automáticamente a 64x64px, con el ratio de aspecto preservado. Use este campo donde se requiera una imagen pequeña."
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_source_id
-msgid "Source"
-msgstr "Fuente"
+msgstr "Imagen de tamaño pequeño de este contacto. Se redimensiona automáticamente a 64x64 px, con el ratio de aspecto preservado. Use este campo donde se requiera una imagen pequeña."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_origin
 msgid "Source Document"
-msgstr "Documento de origen"
+msgstr "Documento origen"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_sale_ok
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_sale_ok
 msgid "Specify if the product can be selected in a sales order line."
 msgstr "Especifique si un producto puede ser seleccionado en un pedido de venta."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_property_cost_method
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_property_cost_method
 msgid ""
 "Standard Price: The products are valued at their standard cost defined on the product.\n"
 "        Average Cost (AVCO): The products are valued at weighted average cost.\n"
 "        First In First Out (FIFO): The products are valued supposing those that enter the company first will also leave it first."
 msgstr ""
-"Precio estándar: Los productos se valoran según su coste estándar definido en el producto.\n"
-"        Coste promedio (AVCO): Los productos se valoran según su coste promedio ponderado.\n"
-"        Primeras entradas, primeras salidas (FIFO): Los productos se valoran dando por hecho que los primeros en entrar en la empresa son también los primeros en salir."
+"Standard Price: The products are valued at their standard cost defined on the product.\n"
+"        Average Cost (AVCO): The products are valued at weighted average cost.\n"
+"        First In First Out (FIFO): The products are valued supposing those that enter the company first will also leave it first."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_category_property_cost_method
@@ -2633,14 +2075,13 @@ msgid ""
 "        First In First Out (FIFO): The products are valued supposing those that enter the company first will also leave it first.\n"
 "        "
 msgstr ""
-"Precio estándar: Los productos se valoran según su coste estándar definido en el producto.\n"
-"        Coste promedio (AVCO): Los productos se valoran según su coste promedio ponderado\n"
-"        Primeras entradas, primeras salidas (FIFO): Los productos se valoran dando por hecho que los primeros en entrar en la empresa son también los primeros en salir.\n"
+"Standard Price: The products are valued at their standard cost defined on the product.\n"
+"        Average Cost (AVCO): The products are valued at weighted average cost.\n"
+"        First In First Out (FIFO): The products are valued supposing those that enter the company first will also leave it first.\n"
 "        "
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_hs_code
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_hs_code
 msgid "Standardized code for international shipping and goods declaration"
 msgstr "Código estandarizado para el envío internacional y declaración de mercancías"
 
@@ -2648,7 +2089,6 @@ msgstr "Código estandarizado para el envío internacional y declaración de mer
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_activity_state
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_state_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_activity_state
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_activity_state
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_activity_state
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_state_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_activity_state
@@ -2663,7 +2103,6 @@ msgstr "Estado"
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_activity_state
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_activity_state
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_activity_state
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_activity_state
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_activity_state
 msgid ""
@@ -2683,49 +2122,37 @@ msgid "Stock Field"
 msgstr "Campo stock "
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_stock_fifo_manual_move_ids
-msgid "Stock Fifo Manual Move"
-msgstr "Stock Fifo Manual Move"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_stock_fifo_real_time_aml_ids
-msgid "Stock Fifo Real Time Aml"
-msgstr "Stock Fifo Real Time Aml"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_property_stock_account_input_categ_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_property_stock_account_input
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_property_stock_account_input
 msgid "Stock Input Account"
-msgstr "Cuenta de entrada de stock"
+msgstr "Cuenta de entrada de existencias"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_property_stock_journal
 msgid "Stock Journal"
-msgstr "Diario de stock"
+msgstr "Diario de existencias"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_stock_move_ids
 msgid "Stock Move"
-msgstr "Movimiento de Stock"
+msgstr "Movimiento de existencias"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_move_ids
 msgid "Stock Moves"
-msgstr "Movimientos de Stock"
+msgstr "Movimientos de existencias"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_property_stock_account_output_categ_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_property_stock_account_output
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_property_stock_account_output
 msgid "Stock Output Account"
-msgstr "Cuenta de salida de stock"
+msgstr "Cuenta de salida de existencias"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_picking_warn
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_picking_warn
 msgid "Stock Picking"
-msgstr "Albarán"
+msgstr "Albarán de stock"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_stock_quant_ids
@@ -2735,7 +2162,7 @@ msgstr "Stock Quant"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_property_stock_valuation_account_id
 msgid "Stock Valuation Account"
-msgstr "Cuenta de valoración de stock"
+msgstr "Cuenta de valoración de existencias"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_street
@@ -2755,12 +2182,6 @@ msgid "Subtotal"
 msgstr "Subtotal"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_property_purchase_currency_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_property_purchase_currency_id
-msgid "Supplier Currency"
-msgstr "Moneda de Proveedor"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_supplier_payment_mode_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_supplier_payment_mode_id
 msgid "Supplier Payment Mode"
@@ -2776,15 +2197,8 @@ msgstr "NIF"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_tag_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_category_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_category_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_tag_ids
 msgid "Tags"
 msgstr "Etiquetas"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_target_type
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_target_type
-msgid "Target Type"
-msgstr "Tipo de cálculo"
 
 #. module: connector_woocommerce
 #: model:ir.model,name:connector_woocommerce.model_account_tax
@@ -2815,12 +2229,11 @@ msgstr "Cálculo de impuestos"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_tax_exigibility
 msgid "Tax Due"
-msgstr "Impuesto vencido"
+msgstr "Impuestos vencidos"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_tax_group_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_tax_group_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_tax_group_id
 msgid "Tax Group"
 msgstr "Grupo de impuestos"
 
@@ -2828,7 +2241,7 @@ msgstr "Grupo de impuestos"
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_vat
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_vat
 msgid "Tax Identification Number. Fill it if the company is subjected to taxes. Used by the some of the legal statements."
-msgstr "Número de identificación fiscal. Llénelo si la compañía está sujeta a impuestos. Usado por algunos documentos legales."
+msgstr "Número de identificación fiscal. Llénelo si la compañía esta sujeta a impuestos. Usado por algunos documentos legales."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_name
@@ -2847,7 +2260,6 @@ msgstr "Ámbito del impuesto"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_tax_group_id
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_tax_group_id
 msgid "Tax groups are used with some external system like Prestashop"
 msgstr "Tax groups are used with some external system like Prestashop"
 
@@ -2860,9 +2272,8 @@ msgstr "Impuestos"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_pricelist_id
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_pricelist_id
 msgid "Technical field. Used for searching on pricelists, not stored in database."
-msgstr "Campo técnico. Se utiliza para buscar en lista de precios, no almacenadas en la base de datos."
+msgstr "Campo técnico. Se utiliza para buscar en tarifas, no almacenadas en la base de datos."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_stock_move_ids
@@ -2876,7 +2287,7 @@ msgid "Terms and conditions"
 msgstr "Términos y condiciones"
 
 #. module: connector_woocommerce
-#: code:addons/connector_woocommerce/models/woocommerce_backend/common.py:180
+#: code:addons/connector_woocommerce/models/woocommerce_backend/common.py:181
 #, python-format
 msgid "Test Success"
 msgstr "Test Success"
@@ -2888,14 +2299,8 @@ msgstr "La cuenta analítica relacionada con un pedido de venta."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_sale_delay
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_sale_delay
 msgid "The average delay in days between the confirmation of the customer order and the delivery of the finished products. It's the time you promise to your customers."
 msgstr "El retraso medio en días entre la confirmación del pedido de cliente y la entrega de los productos finales. Es el tiempo que promete a sus clientes."
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_nb_days
-msgid "The calculation will be done for the last 365 days or since the first purchase or sale of the product if it's more recent"
-msgstr "El calculo se realizará sobre los últimos 365 o desde su primera venta si el producto es más reciente"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_wc_backend_company_id
@@ -2905,19 +2310,18 @@ msgstr "La compañia se establece automáticamente de acuerdo a sus preferencias
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_category_property_account_expense_categ_id
 msgid "The expense is accounted for when a vendor bill is validated, except in anglo-saxon accounting with perpetual inventory valuation in which case the expense (Cost of Goods Sold account) is recognized at the customer invoice validation."
-msgstr "El gasto se contabiliza cuando se valida una factura del proveedor, excepto en la contabilidad anglosajona con valoración perpetua del inventario, en cuyo caso el gasto (cuenta del coste de los bienes vendidos) se reconoce en la validación de la factura del cliente."
+msgstr "El gasto se contabiliza cuando se valida una factura del proveedor, excepto en la contabilidad anglosajona con valoración perpetua del inventario, en cuyo caso el gasto (cuenta del costo de los bienes vendidos) se reconoce en la validación de la factura del cliente."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_property_account_expense_id
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_property_account_expense_id
 msgid "The expense is accounted for when a vendor bill is validated, except in anglo-saxon accounting with perpetual inventory valuation in which case the expense (Cost of Goods Sold account) is recognized at the customer invoice validation. If the field is empty, it uses the one defined in the product category."
-msgstr "El gasto se contabiliza cuando se valida una factura del proveedor, excepto en la contabilidad anglosajona con valoración perpetua del inventario, en cuyo caso el gasto (cuenta del coste de los bienes vendidos) se reconoce en la validación de la factura del cliente. Si el campo está vacío, usa el definido en la categoría del producto."
+msgstr "El gasto se contabiliza cuando se valida una factura del proveedor, excepto en la contabilidad anglosajona con valoración perpetua del inventario, en cuyo caso el gasto (cuenta del costo de los bienes vendidos) se reconoce en la validación de la factura del cliente. Si el campo está vacío, usa el definido en la categoría del producto."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_property_account_position_id
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_property_account_position_id
 msgid "The fiscal position will determine taxes and accounts used for the partner."
-msgstr "La posición fiscal determinará los impuestos y cuentas utilizadas por el asociado."
+msgstr "La posición fiscal determinará los impuestos y cuentas utilizados por el asociado."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_user_id
@@ -2926,15 +2330,9 @@ msgid "The internal user that is in charge of communicating with this contact if
 msgstr "El usuario interno encargado de comunicarse con este contacto si lo hubiese."
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_address_pos_order_count
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_pos_order_count
-msgid "The number of point of sales orders related to this customer"
-msgstr "El número de pedidos del punto de venta relacionados con este cliente"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_category_product_count
 msgid "The number of products under this category (Does not consider the children categories)"
-msgstr "El número de productos bajo esta categoría (No considera las categorías hijas)"
+msgstr "El número de productos bajo esta categoría (No considera las categorías de hijas)"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_has_unreconciled_entries
@@ -2956,18 +2354,12 @@ msgstr "El precio de venta se gestiona desde la plantilla del producto. Haga cli
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_account_tax_sequence
 msgid "The sequence field is used to define order in which the tax lines are applied."
-msgstr "El campo de secuencia se utiliza para definir el orden en que se aplican los apuntes de impuestos."
+msgstr "El campo secuencia se utiliza para definir el orden en que se aplican los apuntes de impuestos."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_volume
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_volume
 msgid "The volume in m3."
 msgstr "El volumen en m3."
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_weight
-msgid "The weight of the contents in Kg, not including any packaging, etc."
-msgstr "El peso del contenido en Kg, sin incluir empaquetado, etc..."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_property_account_payable_id
@@ -2982,40 +2374,9 @@ msgid "This account will be used instead of the default one as the receivable ac
 msgstr "Esta cuenta se utilizará en lugar de la cuenta por defecto como la cuenta pendiente de cobro del asociado actual."
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_category_property_account_creditor_price_difference_categ
-msgid "This account will be used to value price difference between purchase price and accounting cost."
-msgstr "Esta cuenta se utilizará para valorar la diferencia de precios entre el precio de compra y precio contabilizado."
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_property_account_creditor_price_difference
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_property_account_creditor_price_difference
-msgid "This account will be used to value price difference between purchase price and cost price."
-msgstr "Esta cuenta se utilizará para valorar la diferencia de precios entre el precio de compra y precio de coste."
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_category_property_account_income_categ_id
 msgid "This account will be used when validating a customer invoice."
 msgstr "Esta cuenta se usará al validar una factura del cliente."
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_address_property_purchase_currency_id
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_property_purchase_currency_id
-msgid "This currency will be used, instead of the default one, for purchases from the current partner"
-msgstr "Se utilizará esta moneda, en lugar de la predeterminada, para las compras de la pareja actual"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_address_target_type
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_target_type
-msgid ""
-"This defines the amount of products you want to purchase. \n"
-"The system will compute a purchase order based on the stock you have and the average consumption of each product.* Target type '€': computed purchase order will cost at least the amount specified\n"
-"* Target type 'days': computed purchase order will last at least the number of days specified (according to current average consumption)\n"
-"* Target type 'kg': computed purchase order will weight at least the weight specified"
-msgstr ""
-"Define la cantidad de productos a comprar\n"
-"El sistema calculará una orden de compra basada en el stock que tienes y el consumo medio de cada producto. * Tipo cálculo '€': el pedido calculado costará al menos el total especificado\n"
-" * Tipo de calculo 'dias': el pedido calculado durará al menos el númeor de días especificados (según el consumo medio actual)\n"
-" * Tipo de calculo 'kg': el pedido calculado pesará al menos lo especificado"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_property_delivery_carrier_id
@@ -3027,32 +2388,12 @@ msgstr "Este método de entrega será utilizado cuando se facture a partir del a
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_image
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_image
 msgid "This field holds the image used as avatar for this contact, limited to 1024x1024px"
-msgstr "Este campo contiene la imagen utilizada como avatar para este contacto, limitada a 1024x1024px"
+msgstr "Este campo contiene la imagen utilizada como avatar para este contacto, limitada a 1024x1024 px"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_image_variant
 msgid "This field holds the image used as image for the product variant, limited to 1024x1024px."
 msgstr "Este campo contiene la imagen usada como imagen de la variante del producto, limitada a 1024x1024px."
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_image
-msgid "This field holds the image used as image for the product, limited to 1024x1024px."
-msgstr "Este campo contiene la imagen usada para el producto, limitada a 1024x1024px."
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_campaign_id
-msgid "This is a name that helps you keep track of your different campaign efforts, e.g. Fall_Drive, Christmas_Special"
-msgstr "Esto es un nombre que facilita el seguimiento de sus diferentes proyectos de campaña. Por ejemplo: Rebajas_de_otoño, Especial_de_Navidad"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_medium_id
-msgid "This is the method of delivery, e.g. Postcard, Email, or Banner Ad"
-msgstr "Esto es el método de entrega. Por ejemplo: correo postal, correo electrónico, publicidad web"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_source_id
-msgid "This is the source of the link, e.g. Search Engine, another domain, or name of email list"
-msgstr "Esto es la fuente del enlace. Por ejemplo: motor de búsqueda, otro dominio o nombre en listado de correos electrónicos"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_price_extra
@@ -3075,37 +2416,29 @@ msgstr "Este término de pago se utilizará en lugar del predeterminado para ped
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_property_product_pricelist
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_property_product_pricelist
 msgid "This pricelist will be used, instead of the default one, for sales to the current partner"
-msgstr "Esta tarifa se utilizará, en lugar de la predeterminada, para las ventas de la empresa actual."
+msgstr "Esta tarifa se utilizará, en lugar de la por defecto, para las ventas de la empresa actual."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_property_stock_customer
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_property_stock_customer
 msgid "This stock location will be used, instead of the default one, as the destination location for goods you send to this partner"
-msgstr "Se utilizará esta ubicación de stock, en lugar de la ubicación por defecto, como la ubicación de destino para enviar mercancías a esta empresa"
+msgstr "Se utilizará esta ubicación de existencias, en lugar de la ubicación por defecto, como la ubicación de destino para enviar mercancías a esta empresa"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_property_stock_supplier
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_property_stock_supplier
 msgid "This stock location will be used, instead of the default one, as the source location for goods you receive from the current partner"
-msgstr "Esta ubicación de stock será utilizada, en lugar de la ubicación predeterminada, como la ubicación de origen para recibir mercancías desde esta empresa"
+msgstr "Esta ubicación de existencias será utilizada, en lugar de la ubicación por defecto, como la ubicación de origen para recibir mercancías desde esta empresa"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_property_stock_production
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_property_stock_production
 msgid "This stock location will be used, instead of the default one, as the source location for stock moves generated by manufacturing orders."
-msgstr "Se usará esta ubicación de stock, en lugar de la predeterminada, como la ubicación origen para los movimientos de stock generados por las órdenes de fabricación."
+msgstr "Se usará esta ubicación de existencias, en lugar de la de por defecto, como la ubicación origen para los movimientos de existencias generados por las órdenes de fabricación."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_property_stock_inventory
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_property_stock_inventory
 msgid "This stock location will be used, instead of the default one, as the source location for stock moves generated when you do an inventory."
-msgstr "Se usará esta ubicación de existencias, en lugar de la predeterminada, como la ubicación origen para los movimientos de stock generados cuando se realizan inventarios."
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_pos_categ_id
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_pos_categ_id
-msgid "Those categories are used to group similar products for point of sale."
-msgstr "Estas categorías se usan para agrupar productos similares para el punto de venta."
+msgstr "Se usará esta ubicación de existencias, en lugar de la de por defecto, como la ubicación origen para los movimientos de existencias generados cuando se realizan inventarios."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_tz
@@ -3117,7 +2450,7 @@ msgstr "Zona horaria"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_tz_offset
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_tz_offset
 msgid "Timezone offset"
-msgstr "Compensación de zona horaria"
+msgstr "Compensación zona horaria"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_title
@@ -3131,52 +2464,16 @@ msgid "To Invoice"
 msgstr "A facturar"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_to_weight
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_to_weight
-msgid "To Weigh With Scale"
-msgstr "Para pesar con balanza"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_amount_total
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_price_total
 msgid "Total"
 msgstr "Total"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_balance
-msgid "Total Balance"
-msgstr "Total cuota"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_base_balance
-msgid "Total Base Balance"
-msgstr "Total base imponible"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_total_consumption_15
-msgid "Total Consumption (ud. 15 days)"
-msgstr "Consumo total (ud. 15 días)"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_total_consumption_30
-msgid "Total Consumption (ud. 30 days)"
-msgstr "Consumo total (ud. 30 días)"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_total_consumption_90
-msgid "Total Consumption (ud. 90 days)"
-msgstr "Consumo total (ud. 90 días)"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_total_consumption
-msgid "Total Consumption (ud. max 365 days)"
-msgstr "Consumo total  (ud. máx 365 días)"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_total_invoiced
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_total_invoiced
 msgid "Total Invoiced"
-msgstr "Total Facturado"
+msgstr "Total facturado"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_debit
@@ -3209,13 +2506,11 @@ msgstr "Todas las rutas aplicadas"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_service_type
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_service_type
 msgid "Track Service"
-msgstr "Servicio de seguimiento"
+msgstr "Seguimiento del Servicio"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_tracking
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_tracking
 msgid "Tracking"
 msgstr "Seguimiento"
 
@@ -3226,7 +2521,6 @@ msgstr "Precio unitario"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_uom_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_uom_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_product_uom
 msgid "Unit of Measure"
 msgstr "Unidad de medida"
@@ -3234,7 +2528,6 @@ msgstr "Unidad de medida"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_message_unread
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_message_unread
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_message_unread
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_message_unread
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_message_unread
 msgid "Unread Messages"
@@ -3243,7 +2536,6 @@ msgstr "Mensajes sin leer"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_message_unread_counter
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_message_unread_counter
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_message_unread_counter
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_message_unread_counter
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_message_unread_counter
 msgid "Unread Messages Counter"
@@ -3279,20 +2571,13 @@ msgstr "Campo útil para expresar importe en moneda."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_valuation
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_valuation
 msgid "Valuation"
 msgstr "Valoración"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_value_name
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_stock_value
 msgid "Value"
 msgstr "Valor"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_value_ids
-msgid "Values"
-msgstr "Valores"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_image_variant
@@ -3306,14 +2591,8 @@ msgstr "Precio adicional de la variante "
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_variant_seller_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_variant_seller_ids
 msgid "Variant Seller"
 msgstr "Variante del vendedor"
-
-#. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_value_product_ids
-msgid "Variants"
-msgstr "Variantes"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_property_stock_supplier
@@ -3325,17 +2604,15 @@ msgstr "Ubicación de proveedor"
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_property_supplier_payment_term_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_property_supplier_payment_term_id
 msgid "Vendor Payment Terms"
-msgstr "Plazo de pago de proveedor"
+msgstr "Términos de Pago"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_supplier_taxes_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_supplier_taxes_id
 msgid "Vendor Taxes"
 msgstr "Impuestos de proveedor"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_seller_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_seller_ids
 msgid "Vendors"
 msgstr "Proveedores"
 
@@ -3351,14 +2628,12 @@ msgstr "Version"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_volume
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_volume
 msgid "Volume"
 msgstr "Volumen"
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_wc_backend_warehouse_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_warehouse_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_warehouse_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_warehouse_id
 msgid "Warehouse"
 msgstr "Almacén"
@@ -3377,7 +2652,6 @@ msgstr "Sitio web"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_website_message_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_website_message_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_website_message_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_website_message_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_website_message_ids
 msgid "Website Messages"
@@ -3386,7 +2660,6 @@ msgstr "Mensajes del sitio web"
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_address_website_message_ids
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_website_message_ids
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_website_message_ids
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_res_partner_website_message_ids
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_sale_order_website_message_ids
 msgid "Website communication history"
@@ -3399,29 +2672,22 @@ msgid "Website of Partner or Company"
 msgstr "Web de la empresa o de la compañía"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_weight
-msgid "Weight"
-msgstr "Peso"
-
-#. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_category_property_stock_account_input_categ_id
 msgid "When doing real-time inventory valuation, counterpart journal items for all incoming stock moves will be posted in this account, unless there is a specific valuation account set on the source location. This is the default value for all products in this category. It can also directly be set on each product"
-msgstr "Cuando se realiza una valoración de inventario en tiempo real, la contrapartida para todos los movimientos de entrada serán imputados en esta cuenta, a menos que se haya establecido una cuenta de valoración específica en la ubicación fuente. Éste es el valor predeterminado para todos los productos en esta categoría. También se puede establecer directamente en cada producto."
+msgstr "Cuando se realiza una valoración de inventario en tiempo real, la contrapartida para todos los movimientos de entrada serán imputados en esta cuenta, a menos que se haya establecido una cuenta de valoración específica en la ubicación fuente. Éste es el valor por defecto para todos los productos en esta categoría. También se puede establecer directamente en cada producto."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_property_stock_account_input
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_property_stock_account_input
 msgid "When doing real-time inventory valuation, counterpart journal items for all incoming stock moves will be posted in this account, unless there is a specific valuation account set on the source location. When not set on the product, the one from the product category is used."
 msgstr "Cuando se realiza una valoración de inventario en tiempo real, la contrapartida para todos los movimientos de entrada serán imputados en esta cuenta, a menos que se haya establecido una cuenta de valoración específica en la ubicación fuente. Cuando no se establece en el producto, se usa la establecida en la categoría."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_category_property_stock_account_output_categ_id
 msgid "When doing real-time inventory valuation, counterpart journal items for all outgoing stock moves will be posted in this account, unless there is a specific valuation account set on the destination location. This is the default value for all products in this category. It can also directly be set on each product"
-msgstr "Cuando se realiza una valoración de inventario en tiempo real, la contrapartida para todos los movimientos de salida serán imputados en esta cuenta, a menos que se haya establecido una cuenta de valoración específica en la ubicación destino. Éste es el valor predeterminado para todos los productos en esta categoría. También se puede establecer directamente en cada producto."
+msgstr "Cuando se realiza una valoración de inventario en tiempo real, la contrapartida para todos los movimientos de salida serán imputados en esta cuenta, a menos que se haya establecido una cuenta de valoración específica en la ubicación destino. Éste es el valor por defecto para todos los productos en esta categoría. También se puede establecer directamente en cada producto."
 
 #. module: connector_woocommerce
 #: model:ir.model.fields,help:connector_woocommerce.field_woo_product_product_property_stock_account_output
-#: model:ir.model.fields,help:connector_woocommerce.field_woo_product_template_property_stock_account_output
 msgid "When doing real-time inventory valuation, counterpart journal items for all outgoing stock moves will be posted in this account, unless there is a specific valuation account set on the destination location. When not set on the product, the one from the product category is used."
 msgstr "Cuando se realiza una valoración de inventario en tiempo real, la contrapartida para todos los movimientos de salida serán imputados en esta cuenta, a menos que se haya establecido una cuenta de valoración específica en la ubicación destino. Cuando no se establece en el producto, se usa la establecida en la categoría."
 
@@ -3439,11 +2705,8 @@ msgstr "Cuando está activada una valoración de inventario en tiempo real de un
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_backend_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_address_backend_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_binding_backend_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_backend_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_attribute_value_backend_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_category_backend_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_backend_id
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_backend_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_res_partner_backend_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_backend_id
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_backend_id
@@ -3482,34 +2745,6 @@ msgid "WooCommerce"
 msgstr "WooCommerce"
 
 #. module: connector_woocommerce
-#: model:ir.actions.server,name:connector_woocommerce.ir_cron_force_product_stock_qty_ir_actions_server
-#: model:ir.cron,cron_name:connector_woocommerce.ir_cron_force_product_stock_qty
-#: model:ir.cron,name:connector_woocommerce.ir_cron_force_product_stock_qty
-msgid "WooCommerce -  Force Stock Quantities"
-msgstr "WooCommerce -  Force Stock Quantities"
-
-#. module: connector_woocommerce
-#: model:ir.actions.server,name:connector_woocommerce.ir_cron_import_product_ir_actions_server
-#: model:ir.cron,cron_name:connector_woocommerce.ir_cron_import_product
-#: model:ir.cron,name:connector_woocommerce.ir_cron_import_product
-msgid "WooCommerce -  Import Products"
-msgstr "WooCommerce -  Import Products"
-
-#. module: connector_woocommerce
-#: model:ir.actions.server,name:connector_woocommerce.ir_cron_update_product_stock_qty_ir_actions_server
-#: model:ir.cron,cron_name:connector_woocommerce.ir_cron_update_product_stock_qty
-#: model:ir.cron,name:connector_woocommerce.ir_cron_update_product_stock_qty
-msgid "WooCommerce -  Update Stock Quantities"
-msgstr "WooCommerce -  Update Stock Quantities"
-
-#. module: connector_woocommerce
-#: model:ir.actions.server,name:connector_woocommerce.ir_cron_import_sale_orders_ir_actions_server
-#: model:ir.cron,cron_name:connector_woocommerce.ir_cron_import_sale_orders
-#: model:ir.cron,name:connector_woocommerce.ir_cron_import_sale_orders
-msgid "WooCommerce - Import Sales Orders"
-msgstr "WooCommerce - Import Sales Orders"
-
-#. module: connector_woocommerce
 #: model:ir.model,name:connector_woocommerce.model_wc_backend
 msgid "WooCommerce Backend Configuration"
 msgstr "WooCommerce Backend Configuration"
@@ -3517,11 +2752,9 @@ msgstr "WooCommerce Backend Configuration"
 #. module: connector_woocommerce
 #: model:ir.model.fields,field_description:connector_woocommerce.field_account_tax_woocommerce_bind_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_product_product_woocommerce_bind_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_product_template_woocommerce_bind_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_sale_order_line_woo_bind_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_account_tax_woocommerce_bind_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_woocommerce_bind_ids
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_woocommerce_bind_ids
 #: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_line_woo_bind_ids
 #: model:ir.ui.view,arch_db:connector_woocommerce.product_normal_form_view
 #: model:ir.ui.view,arch_db:connector_woocommerce.view_tax_form
@@ -3539,7 +2772,7 @@ msgid "WooCommerce Configuration"
 msgstr "Configuración WooCommerce"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_status_id_8332
+#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_sale_order_status_id_5573
 msgid "WooCommerce Order Status"
 msgstr "WooCommerce Order Status"
 
@@ -3549,7 +2782,7 @@ msgid "WooCommerce Payment Method Code"
 msgstr "WooCommerce Payment Method Code"
 
 #. module: connector_woocommerce
-#: model:ir.ui.view,arch_db:connector_woocommerce.view_woo_product_tree
+#: model:ir.ui.view,arch_db:connector_woocommerce.view_woo_product_form
 msgid "WooCommerce Product"
 msgstr "WooCommerce Product"
 
@@ -3575,17 +2808,17 @@ msgid "count"
 msgstr "count"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_credated_at
+#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_credated_at
 msgid "created_at"
 msgstr "created_at"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_odoo_id
+#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_odoo_id
 msgid "product"
 msgstr "product"
 
 #. module: connector_woocommerce
-#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_template_weight
+#: model:ir.model.fields,field_description:connector_woocommerce.field_woo_product_product_weight
 msgid "weight"
 msgstr "weight"
 
@@ -3600,9 +2833,9 @@ msgid "woo product category"
 msgstr "woo product category"
 
 #. module: connector_woocommerce
-#: model:ir.model,name:connector_woocommerce.model_woo_product_template
-msgid "woo product template"
-msgstr "woo product template"
+#: model:ir.model,name:connector_woocommerce.model_woo_product_product
+msgid "woo product product"
+msgstr "woo product product"
 
 #. module: connector_woocommerce
 #: model:ir.model,name:connector_woocommerce.model_woo_res_partner
@@ -3613,21 +2846,6 @@ msgstr "woo res partner"
 #: model:ir.model,name:connector_woocommerce.model_woo_address
 msgid "woo.address"
 msgstr "woo.address"
-
-#. module: connector_woocommerce
-#: model:ir.model,name:connector_woocommerce.model_woo_product_attribute
-msgid "woo.product.attribute"
-msgstr "woo.product.attribute"
-
-#. module: connector_woocommerce
-#: model:ir.model,name:connector_woocommerce.model_woo_product_attribute_value
-msgid "woo.product.attribute.value"
-msgstr "woo.product.attribute.value"
-
-#. module: connector_woocommerce
-#: model:ir.model,name:connector_woocommerce.model_woo_product_product
-msgid "woo.product.product"
-msgstr "woo.product.product"
 
 #. module: connector_woocommerce
 #: model:ir.model,name:connector_woocommerce.model_woo_sale_order_line
