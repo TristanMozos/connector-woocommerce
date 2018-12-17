@@ -170,8 +170,8 @@ class WooBackend(models.Model):
         r = wcapi.get("products")
         if r.status_code == 404:
             raise UserError(_("Enter Valid url"))
-        _logger.error("api.call(%s) failed with method %s, response: %s" % (
-            location, 'get', r))
+        # _logger.error("api.call(%s) failed with method %s, response: %s" % (
+        #     location, 'get', r))
         val = r.json()
         msg = ''
         if 'errors' in r.json():
