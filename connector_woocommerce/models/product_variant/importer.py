@@ -158,11 +158,16 @@ class ProductProductImportMapper(Component):
     def attributes(self, record):
         options = []
         for attribute in record['attributes']:
-            result_id = self.env['product.attribute.value'].search([
-                ('name', '=', attribute['option'])
+            att_id = self.env['product.attribute'].search([
+                ('name', '=', attribute['name']),
             ])
-            if result_id:
-                options += [result_id.id]
+            if att_id:
+                result_id = self.env['product.attribute.value'].search([
+                    ('name', '=', attribute['option']),
+                    ('attribute_id', '=',  att_id.id)
+                ], limit=1)
+                if result_id:
+                    options += [result_id.id]
         return {
             'attribute_value_ids': [(6, 0, options)]
         }
