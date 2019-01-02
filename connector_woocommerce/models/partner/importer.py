@@ -36,9 +36,9 @@ class CustomerImportMapper(Component):
 
     @mapping
     def name(self, record):
-        if record.get('billing', {}).get('company'):
+        if record.get('shipping', {}).get('company'):
             return {
-                'name': record['billing']['company'],
+                'name': record['shipping']['company'],
                 'company_type': 'company'
             }
         return {
@@ -48,20 +48,20 @@ class CustomerImportMapper(Component):
 
     @mapping
     def city(self, record):
-        if record.get('billing'):
-            rec = record['billing']
+        if record.get('shipping'):
+            rec = record['shipping']
             return {'city': rec['city'] or None}
 
     @mapping
     def zip(self, record):
-        if record.get('billing'):
-            rec = record['billing']
+        if record.get('shipping'):
+            rec = record['shipping']
             return {'zip': rec['postcode'] or None}
 
     @mapping
     def address(self, record):
-        if record.get('billing'):
-            rec = record['billing']
+        if record.get('shipping'):
+            rec = record['shipping']
             return {'street': rec['address_1'] or None}
 
     @mapping
@@ -72,14 +72,14 @@ class CustomerImportMapper(Component):
 
     @mapping
     def address_2(self, record):
-        if record.get('billing'):
-            rec = record['billing']
+        if record.get('shipping'):
+            rec = record['shipping']
             return {'street2': rec['address_2'] or None}
 
     @mapping
     def country(self, record):
-        if record.get('billing'):
-            rec = record['billing']
+        if record.get('shipping'):
+            rec = record['shipping']
             if rec['country']:
                 country_id = self.env['res.country'].search(
                     [('code', '=', rec['country'])])
@@ -90,8 +90,8 @@ class CustomerImportMapper(Component):
 
     @mapping
     def state(self, record):
-        if record.get('billing'):
-            rec = record['billing']
+        if record.get('shipping'):
+            rec = record['shipping']
             if rec['state'] and rec['country']:
                 state_id = self.env['res.country.state'].search(
                     [('code', '=', rec['state'])], limit=1)
