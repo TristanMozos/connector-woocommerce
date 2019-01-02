@@ -49,7 +49,7 @@ class WooImporter(AbstractComponent):
             return
         from_string = fields.Datetime.from_string
         sync_date = from_string(sync)
-        if 'date_modified' in self.woo_record:
+        if 'date_modified' in self.woo_record and self.woo_record['date_modified']:
             woo_date = datetime.strptime(
                 self.woo_record['date_modified'], WOO_DATETIME_FORMAT_2)
         else:
