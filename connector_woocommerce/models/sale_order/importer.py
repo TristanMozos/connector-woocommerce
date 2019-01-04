@@ -523,6 +523,12 @@ class SaleOrderLineImportMapper(Component):
             ])
             if binding:
                 product = binding
+            else:
+                binding = self.env['product.template'].search([
+                    ('default_code', '=', record['sku'])
+                ], limit=1)
+                if binding:
+                    product = binding
         else:
             product = binder.to_internal(record['variation_id'], unwrap=True)
         if not product:
